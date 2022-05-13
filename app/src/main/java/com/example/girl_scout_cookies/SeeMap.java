@@ -18,13 +18,11 @@ public class SeeMap extends AppCompatActivity {
 
     public void toMap(View view) {
         Intent intent = new Intent(this, ToMap.class);
-        //get the content of text fiel of editTextMapCode
+        // Get the content of text field of editTextMapCode
         EditText editText = (EditText) findViewById(R.id.editTextMapCode);
         String message = editText.getText().toString();
-        //send the content of message allong the intent to ToMap in extra message
+        // Send the content of message along the intent to ToMap in extra message
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
     }
-
-
 }
