@@ -9,11 +9,9 @@ import android.widget.TextView;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class ToMap extends AppCompatActivity {
     Connection connect = null;
-    String ConnectionResult = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +19,7 @@ public class ToMap extends AppCompatActivity {
         setContentView(R.layout.activity_to_map);
         // Get the Intent that started this activity and extract the string
         android.content.Intent intent = getIntent();
-        String message = getIntent().getStringExtra("Girl-Scout-Cookies.MESSAGE");
+        String message = intent.getStringExtra("Girl-Scout-Cookies.MESSAGE");
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
         textView.setText(message);
@@ -45,6 +43,6 @@ public class ToMap extends AppCompatActivity {
             Log.e("Error ", ex.getMessage());
             ex.printStackTrace();
         }
-        connect = ConnectionHelp.closeConnection(connect);
+        ConnectionHelp.closeConnection(connect);
     }
 }
