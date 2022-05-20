@@ -2,21 +2,17 @@ package com.example.girl_scout_cookies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
 
 public class ToMap extends AppCompatActivity {
-    Connection connect;
+    Connection connect = null;
     String ConnectionResult = "";
 
     @Override
@@ -35,54 +31,20 @@ public class ToMap extends AppCompatActivity {
         TextView tx1 = findViewById(R.id.textView3);
         TextView tx2 = findViewById(R.id.textView4);
 
-
-        ConnectionHelper connectionHelper = new ConnectionHelper();
-//            connect = connectionHelper.connectionClass();
+        connect = ConnectionHelp.connect(connect, this);
 
         try {
-
-            String dbURL = connectionHelper.ConnectionURL;
-            String user = connectionHelper.uname;
-            String pass = connectionHelper.pass;
-            connect = DriverManager.getConnection(dbURL, user, pass);
-            if (connect != null) {
-                DatabaseMetaData dm = (DatabaseMetaData) connect.getMetaData();
-                tx1.setText(dm.getDriverName());
-//                System.out.println("Driver version: " + dm.getDriverVersion());
-//                System.out.println("Product name: " + dm.getDatabaseProductName());
-//                System.out.println("Product version: " + dm.getDatabaseProductVersion());
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            try {
-                if (connect != null && !connect.isClosed()) {
-                    connect.close();
+            String query = "SELECT * FROM TestTable WHERE name='Bas'";
+            ResultSet rs = ConnectionHelp.readFromDatabase(connect, query);
+            if (rs != null) {
+                while (rs.next()) {
+                    tx1.setText(rs.getString(1));
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
             }
+        } catch (Exception ex) {
+            Log.e("Error ", ex.getMessage());
+            ex.printStackTrace();
         }
+        connect = ConnectionHelp.closeConnection(connect);
     }
-
-//            if (connect != null) {
-//                String query = "SELECT * FROM test2";
-//                Statement st = connect.createStatement();
-//                ResultSet rs = st.executeQuery(query);
-//
-//                ConnectionResult = "Successfully connected";
-//
-//                while (rs.next()) {
-//                    tx1.setText(rs.getString(1));
-//                    tx2.setText(rs.getString(2));
-//                }
-//            } else {
-//                ConnectionResult = "Check Connection";
-//            }
-//        } catch(Exception ex) {
-//            Log.e("Error ", ex.getMessage());
-//        }
-//        tx2.setText(ConnectionResult);
-//}
 }
