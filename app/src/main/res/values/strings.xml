@@ -7,4 +7,6 @@
     <string name="enter_new_code">Enter a new code for your map</string>
     <string name="error_existing_code">Error: the map code you entered already exists. Please try again with another code.</string>
     <string name="title_activity_test_maps">TestMapsActivity</string>
+    <string name="title_activity_fill_map">FillMap</string>
+    <string name="enter_address">Enter new address</string>
 </resources>

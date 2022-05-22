@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GirlScoutCookies">
 
+        <activity
+            android:name=".FillMapActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
