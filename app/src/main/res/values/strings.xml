@@ -3,6 +3,9 @@
     <string name="see_map_button">See an existing map</string>
     <string name="create_map_button">Create a new map</string>
     <string name="enter">Enter</string>
+    <string name="finish">Finish</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
     <string name="enter_map_code">Enter the code of your map</string>
     <string name="enter_new_code">Enter a new code for your map</string>
     <string name="error_existing_code">Error: the map code you entered already exists. Please try again with another code.</string>
