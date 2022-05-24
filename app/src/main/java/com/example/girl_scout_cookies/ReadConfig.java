@@ -9,7 +9,7 @@ public class ReadConfig {
 
     public ReadConfig(){
         try {
-            ip = new FileInputStream("src/config.properties");
+            ip = new FileInputStream("src/main/java/com/example/config.properties");
             prop.load(ip);
         }catch (Exception e){
             e.printStackTrace();
