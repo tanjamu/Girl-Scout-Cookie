@@ -29,34 +29,39 @@ public class FillMapActivity extends AppCompatActivity {
     }
 
     private void Enter(View view) {
-
+        //use geocoder to convert entered address to location, and display location.
+        // if geocoder fails, don't go to the second menu.
     }
 
     private void Submit(View view) {
-
+        //choose a color and save.
     }
 
     private void Finish(View view) {
-
+        //save changes and exit.
     }
 
     private void Cancel(View view) {
-
+        //exit without saving changes.
     }
 
     private void EnterSubmit(View view) {
-        if (btnEnterSubmit.getText().equals("Enter")) {
+        if (btnEnterSubmit.getText().equals(R.string.enter)) {
             Enter(view);
+            btnEnterSubmit.setText(R.string.submit);
         } else {
             Submit(view);
+            btnEnterSubmit.setText(R.string.enter);
         }
     }
 
     private void FinishCancel(View view) {
-        if (btnEnterSubmit.getText().equals("Finish")) {
+        if (btnEnterSubmit.getText().equals(R.string.finish)) {
             Finish(view);
+            btnFinishCancel.setText(R.string.cancel);
         } else {
             Cancel(view);
+            btnFinishCancel.setText(R.string.finish);
         }
     }
 
