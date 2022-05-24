@@ -20,7 +20,7 @@ public class ConnectionHelp {
     private static String user = "test_login_name";
     private static String password = "password";
     private static String database = "TestDB";
-    private static String ip = "145.116.139.202";
+    private static String ip = "145.116.137.26"; //change
     private static String connection = "jdbc:jtds:sqlserver://"+ip+";database="+database+";integratedSecurity=false;encrypt=false;user="+user+";password="+password+";";
 
     /**
