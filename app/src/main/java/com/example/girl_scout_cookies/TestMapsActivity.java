@@ -47,9 +47,9 @@ public class TestMapsActivity extends FragmentActivity implements OnMapReadyCall
         Geocoder geocoder = new Geocoder(getApplicationContext());
         List<Address> list = new LinkedList<Address>();
         try {
-            list = geocoder.getFromLocationName(message, 1);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
+            list = geocoder.getFromLocationName("Huygensgebouw", 1);
+        } catch (Exception e) {
+            System.err.println("AAAAAAAAAAAAAAAAAAH --> " + e.getMessage());
         }
         latLng = new LatLng(list.get(0).getLatitude(), list.get(0).getLongitude());
     }

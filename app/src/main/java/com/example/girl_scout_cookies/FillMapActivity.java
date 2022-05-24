@@ -38,18 +38,22 @@ public class FillMapActivity extends AppCompatActivity {
     }
 
     private void EnterSubmit(View view) {
-        if (btnEnterSubmit.getText().equals("Enter")) {
+        if (btnEnterSubmit.getText().equals(R.string.enter)) {
             Enter(view);
+            btnEnterSubmit.setText(R.string.submit);
         } else {
             Submit(view);
+            btnEnterSubmit.setText(R.string.enter);
         }
     }
 
     private void FinishCancel(View view) {
-        if (btnEnterSubmit.getText().equals("Finish")) {
+        if (btnEnterSubmit.getText().equals(R.string.finish)) {
             Finish(view);
+            btnFinishCancel.setText(R.string.cancel);
         } else {
             Cancel(view);
+            btnFinishCancel.setText(R.string.finish);
         }
     }
 
