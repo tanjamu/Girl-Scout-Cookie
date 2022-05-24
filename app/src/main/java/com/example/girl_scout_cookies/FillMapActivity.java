@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class FillMapActivity extends AppCompatActivity {
     Button btnEnterSubmit, btnFinishCancel;
@@ -14,11 +15,17 @@ public class FillMapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_map);
 
-        btnEnterSubmit = (Button) findViewById(R.id.enter_submit_button);
-        btnFinishCancel = (Button) findViewById(R.id.finish_cancel_button);
+        btnEnterSubmit = findViewById(R.id.enter_submit_button);
+        btnFinishCancel = findViewById(R.id.finish_cancel_button);
 
         btnEnterSubmit.setOnClickListener(this::EnterSubmit);
         btnFinishCancel.setOnClickListener(this::FinishCancel);
+
+        // Get the Intent that started this activity and extract the string
+        String message = getIntent().getStringExtra("Girl-Scout-Cookies.MESSAGE");
+        // Capture the layout's TextView and set the string as its text
+        TextView textView = findViewById(R.id.textView5);
+        textView.setText(message);
     }
 
     private void Enter(View view) {

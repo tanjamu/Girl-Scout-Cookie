@@ -17,11 +17,12 @@ import androidx.core.app.ActivityCompat;
 
 public class ConnectionHelp {
     private static final String driver = "net.sourceforge.jtds.jdbc.Driver";
-    private static String user = "test_login_name";
-    private static String password = "password";
-    private static String database = "TestDB";
-    private static String ip = "145.116.137.26"; //change
-    private static String connection = "jdbc:jtds:sqlserver://"+ip+";database="+database+";integratedSecurity=false;encrypt=false;user="+user+";password="+password+";";
+    private static ReadConfig rc= new ReadConfig();
+    private static String user = rc.getProp("Name");
+    private static String password = rc.getProp("Password");
+    private static String database = rc.getProp("DataBase");
+    private static String ip = rc.getProp("Ip");
+    private final static String connection = "jdbc:jtds:sqlserver://"+ip+";database="+database+";integratedSecurity=false;encrypt=false;user="+user+";password="+password+";";
 
     /**
      * tries to connect to database and prints info about whether it succeeded
