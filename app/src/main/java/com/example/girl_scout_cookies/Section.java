@@ -7,9 +7,9 @@ import android.location.Address;
 
 public class Section {
     private List<Address> addresses;
-    private Color color;
+    private int color;
 
-    public Section(List<Address> addresses, Color color) {
+    public Section(List<Address> addresses, int color) {
         this.addresses = addresses;
         this.color = color;
     }
@@ -26,11 +26,11 @@ public class Section {
         this.addresses.addAll(addresses);
     }
 
-    public Color getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(Color color) {
+    public void setColor(int color) {
         this.color = color;
     }
 }
