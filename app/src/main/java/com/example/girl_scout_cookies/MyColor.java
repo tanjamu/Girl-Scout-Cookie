@@ -1,9 +1,10 @@
 package com.example.girl_scout_cookies;
 
-public enum color {
-    RED,
+public enum MyColor {
+
     BLUE,
-    YELLOW,
     GREEN,
+    RED
+
 
 }

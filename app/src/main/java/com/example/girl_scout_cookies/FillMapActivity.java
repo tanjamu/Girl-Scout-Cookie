@@ -1,5 +1,7 @@
 package com.example.girl_scout_cookies;
 
+import static android.graphics.Color.YELLOW;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
@@ -20,6 +22,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.lang.Object;
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,7 +44,7 @@ public class FillMapActivity extends AppCompatActivity {
     Marker marker;
 
 
-    int[] colors = new int[]{Color.RED, Color.GREEN, Color.BLUE}; // Change this to all possible color enums
+    int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN}; // Change this to all possible color enums
     List<Section> addresses = new LinkedList<>();
 
 
@@ -83,6 +87,17 @@ public class FillMapActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.top_text_view);
         textView.setText(message);
+    }
+
+    
+
+    private String colorsToSring(MyColor toConvert){
+        switch(toConvert){
+            case RED : return "red";
+            case BLUE : return "blue";
+            case GREEN : return "green";
+            default : return "black";
+        }
     }
 
     private void Enter(View view) {
