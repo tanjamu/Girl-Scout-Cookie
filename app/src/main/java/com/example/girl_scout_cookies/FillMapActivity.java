@@ -2,6 +2,8 @@ package com.example.girl_scout_cookies;
 
 import static android.graphics.Color.YELLOW;
 
+import static com.example.girl_scout_cookies.MyColor.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
@@ -42,7 +44,7 @@ public class FillMapActivity extends AppCompatActivity {
     LatLng latLng;
     Marker marker;
 
-
+    MyColor[] colorEnum = new MyColor[]{RED, BLUE, GREEN};
     int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN}; // Change this to all possible color enums
     List<Section> addresses = new LinkedList<>();
 
@@ -53,7 +55,7 @@ public class FillMapActivity extends AppCompatActivity {
         spinner = findViewById(R.id.color_input); // For selecting colors
         arrayAdapter = new ArrayAdapter<>(
                 this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                new String[]{"Red", "Blue", "Green"}); // Fills the spinner
+                colorsToString(colorEnum)); // Fills the spinner
 
         fragment = (FillMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         geocoder = new Geocoder(getApplicationContext());
@@ -90,13 +92,23 @@ public class FillMapActivity extends AppCompatActivity {
 
 
 
-    private String colorsToSring(MyColor toConvert){
-        switch(toConvert){
-            case RED : return "red";
-            case BLUE : return "blue";
-            case GREEN : return "green";
-            default : return "black";
+    private String[] colorsToString(MyColor[] toConvert){
+        String[] result = new String[toConvert.length];
+        int index = 0;
+        for(MyColor i : toConvert){
+            switch (i) {
+                case RED:
+                   result[index] = "red"; break;
+                case BLUE:
+                    result[index] = "blue"; break;
+                case GREEN:
+                    result[index] ="green"; break;
+                default:
+                    result[index] ="black"; break;
+            }
+            index +=1;
         }
+        return result;
     }
 
     private void Enter(View view) {
