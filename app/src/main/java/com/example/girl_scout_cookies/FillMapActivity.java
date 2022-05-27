@@ -89,7 +89,7 @@ public class FillMapActivity extends AppCompatActivity {
         textView.setText(message);
     }
 
-    
+
 
     private String colorsToSring(MyColor toConvert){
         switch(toConvert){
