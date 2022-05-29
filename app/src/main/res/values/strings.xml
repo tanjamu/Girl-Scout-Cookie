@@ -12,5 +12,8 @@
     <string name="title_activity_test_maps">TestMapsActivity</string>
     <string name="title_activity_fill_map">FillMap</string>
     <string name="enter_address">Enter new address</string>
+<<<<<<< HEAD
     <string name="error_finding_address">Could not find this address, please be more specific</string>
+=======
+>>>>>>> ac1702c50315bc13f51afaf66ad70cedddf6f075
 </resources>

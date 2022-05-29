@@ -1,5 +1,11 @@
 package com.example.girl_scout_cookies;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.content.Context.MODE_PRIVATE;
+
+import static androidx.core.app.ActivityCompat.requestPermissions;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -8,6 +14,7 @@ import java.sql.SQLException;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.StrictMode;
 import android.util.Log;
@@ -17,12 +24,13 @@ import androidx.core.app.ActivityCompat;
 
 public class ConnectionHelp {
     private static final String driver = "net.sourceforge.jtds.jdbc.Driver";
-    private static ReadConfig rc= new ReadConfig();
+    private static ReadConfig rc;// = new ReadConfig();
+
     private static String user = rc.getProp("Name");
     private static String password = rc.getProp("Password");
     private static String database = rc.getProp("DataBase");
     private static String ip = rc.getProp("Ip");
-    private final static String connection = "jdbc:jtds:sqlserver://"+ip+";database="+database+";integratedSecurity=false;encrypt=false;user="+user+";password="+password+";";
+    private static String connection = "jdbc:jtds:sqlserver://"+ip+";database="+database+";integratedSecurity=false;encrypt=false;user="+user+";password="+password+";";
 
     /**
      * tries to connect to database and prints info about whether it succeeded
@@ -31,6 +39,15 @@ public class ConnectionHelp {
      * @return connection con after connecting
      */
     public static Connection connect(Connection con, Activity activity){
+        requestPermissions(activity, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 1);
+        SharedPreferences pref = activity.getSharedPreferences("iets", MODE_PRIVATE);
+        user = pref.getString("User", "Blank User");
+        password = pref.getString("Password", "Blank Password");
+        database = pref.getString("Database", "Blank Database");
+        pref.edit().putString("IP", "192.168.178.59").apply();
+        ip = pref.getString("IP", "Blank IP");
+        connection = "jdbc:jtds:sqlserver://"+ip+";database="+database+";integratedSecurity=false;encrypt=false;user="+user+";password="+password+";";
+
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -44,6 +61,7 @@ public class ConnectionHelp {
         }
         catch(SQLException ex){
             System.err.println("Couldn't connect to database: " + ex.getMessage());
+            System.out.println("user: " + rc.getProp("Name"));
         }
         return con;
     }
