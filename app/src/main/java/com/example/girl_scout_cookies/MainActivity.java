@@ -3,17 +3,19 @@ package com.example.girl_scout_cookies;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        preferences = getSharedPreferences( getPackageName() + "_preferences", MODE_PRIVATE);
     }
 
     public void seeMap(View view) {
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void settings(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+    }
 }
 
 

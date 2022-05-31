@@ -6,10 +6,16 @@
     <string name="finish">Finish</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="settings">Settings</string>
     <string name="enter_map_code">Enter the code of your map</string>
     <string name="enter_new_code">Enter a new code for your map</string>
     <string name="error_existing_code">Error: the map code you entered already exists. Please try again with another code.</string>
     <string name="title_activity_test_maps">TestMapsActivity</string>
     <string name="title_activity_fill_map">FillMap</string>
     <string name="enter_address">Enter new address</string>
+    <string name="user">Username:</string>
+    <string name="ip">IP-address:</string>
+    <string name="database">Database name:</string>
+    <string name="pass">Password:</string>
 </resources>
