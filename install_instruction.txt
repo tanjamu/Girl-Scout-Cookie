@@ -1,0 +1,42 @@
+1) download and install microsoft sql server mangement studio
+2) download and install microsoft expressf
+3) open microsoft sql server mangement studio and connect to server
+  1) enable Sql server autenication
+    1) press right click on servername
+    2) press left click on properties
+    3) press left click on security
+    4) enable Sql server autenication
+  2) create login
+    1) press left click on security
+    2) press right click on login
+    3) press left click on new login
+    4) select sql server autentication
+    5) enter login name and password (remember this)
+    6) deselect enter login in name and the below boxes (some times this gives an error then re enable this again and start de selecting from below)
+    7) press left click on securables
+    8) enable the following permisions:
+      Alter any database
+      Connect Any Database
+      Connect Sql
+      Create any database
+      Select All User Securables
+      View any database
+      View server state
+4) open sql server configuration maneger
+  1) enable tcp/ip under client protecols
+  2) enable tcp/ip under protecols for sql express
+  3) right click tcp/ip under protecols for sql express
+  4) left click properties
+  5) set listen all to yes
+  6) enable all ip protcols
+  7) set the tcp port under listen all to 1433
+5) open windows advanced firewall settings
+  1) left click inbound rules 
+  2) left click new rule
+  3) select port
+  4) enter in the port box 1433
+  5) allow connection
+  6) select every thing
+  7) enter a name(and optionaly a discription)
+  8) repeat for outbound rules
+6) open app and press the ensure database format in the settings menu(TODO)
