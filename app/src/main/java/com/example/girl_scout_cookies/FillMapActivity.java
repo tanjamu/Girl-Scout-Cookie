@@ -44,8 +44,8 @@ public class FillMapActivity extends AppCompatActivity {
     LatLng latLng;
     Marker marker;
 
-    MyColor[] colorEnum = new MyColor[]{RED, BLUE, GREEN};
-    int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN}; // Change this to all possible color enums
+
+    int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW,Color.MAGENTA, Color.CYAN}; // Change this to all possible color enums
     List<Section> addresses = new LinkedList<>();
 
 
@@ -55,7 +55,7 @@ public class FillMapActivity extends AppCompatActivity {
         spinner = findViewById(R.id.color_input); // For selecting colors
         arrayAdapter = new ArrayAdapter<>(
                 this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                colorsToString(colorEnum)); // Fills the spinner
+                new String[]{"red", "blue", "green", "yellow", "magenta", "cyan"}); // Fills the spinner
 
         fragment = (FillMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         geocoder = new Geocoder(getApplicationContext());
@@ -92,24 +92,7 @@ public class FillMapActivity extends AppCompatActivity {
 
 
 
-    private String[] colorsToString(MyColor[] toConvert){
-        String[] result = new String[toConvert.length];
-        int index = 0;
-        for(MyColor i : toConvert){
-            switch (i) {
-                case RED:
-                   result[index] = "red"; break;
-                case BLUE:
-                    result[index] = "blue"; break;
-                case GREEN:
-                    result[index] ="green"; break;
-                default:
-                    result[index] ="black"; break;
-            }
-            index +=1;
-        }
-        return result;
-    }
+
 
     private void Enter(View view) {
         // Pressing the enter button
