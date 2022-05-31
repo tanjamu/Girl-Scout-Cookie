@@ -1,5 +1,9 @@
 package com.example.girl_scout_cookies;
 
+import static android.graphics.Color.YELLOW;
+
+import static com.example.girl_scout_cookies.MyColor.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
@@ -20,6 +24,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.lang.Object;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,8 +44,8 @@ public class FillMapActivity extends AppCompatActivity {
     LatLng latLng;
     Marker marker;
 
-
-    int[] colors = new int[]{Color.RED, Color.GREEN, Color.BLUE}; // Change this to all possible color enums
+    MyColor[] colorEnum = new MyColor[]{RED, BLUE, GREEN};
+    int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN}; // Change this to all possible color enums
     List<Section> addresses = new LinkedList<>();
 
 
@@ -50,7 +55,7 @@ public class FillMapActivity extends AppCompatActivity {
         spinner = findViewById(R.id.color_input); // For selecting colors
         arrayAdapter = new ArrayAdapter<>(
                 this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                new String[]{"Red", "Blue", "Green"}); // Fills the spinner
+                colorsToString(colorEnum)); // Fills the spinner
 
         fragment = (FillMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         geocoder = new Geocoder(getApplicationContext());
@@ -83,6 +88,27 @@ public class FillMapActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.top_text_view);
         textView.setText(message);
+    }
+
+
+
+    private String[] colorsToString(MyColor[] toConvert){
+        String[] result = new String[toConvert.length];
+        int index = 0;
+        for(MyColor i : toConvert){
+            switch (i) {
+                case RED:
+                   result[index] = "red"; break;
+                case BLUE:
+                    result[index] = "blue"; break;
+                case GREEN:
+                    result[index] ="green"; break;
+                default:
+                    result[index] ="black"; break;
+            }
+            index +=1;
+        }
+        return result;
     }
 
     private void Enter(View view) {
