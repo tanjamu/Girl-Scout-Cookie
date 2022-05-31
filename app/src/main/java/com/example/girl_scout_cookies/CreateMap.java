@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class CreateMap extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "Girl-Scout-Cookies.MESSAGE";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +17,19 @@ public class CreateMap extends AppCompatActivity {
     }
 
     public void toMap(View view) {
-        Intent intent = new Intent(this, ToMap.class);
         //get the content of text field of editTextMapCode
         EditText editText = (EditText) findViewById(R.id.editTextNewCode);
-        String message = editText.getText().toString();
-        //send the content of message along the intent to ToMap in extra message
-        intent.putExtra(EXTRA_MESSAGE, message);
+        String mapName = editText.getText().toString();
+
+        // TODO: Query database: if the name exists, cancel creating the map
+        // TODO: Otherwise, create the entry into the database
+        int mapID = 0;
+
+        Intent intent = new Intent(this, ToMap.class);
+
+        //send the map info along the intent to ToMap in extra message
+        intent.putExtra(ToMap.MAP_NAME, mapName);
+        intent.putExtra(ToMap.MAP_ID, mapID);
         startActivity(intent);
     }
 }
