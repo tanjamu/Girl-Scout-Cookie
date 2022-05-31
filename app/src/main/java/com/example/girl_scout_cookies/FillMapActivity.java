@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -29,6 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FillMapActivity extends AppCompatActivity {
+    int mapID;
     TextView errorTextView; // For displaying error messages to the user
     TextView addressTextView; // For entering addresses to add to the map
     Spinner spinner; // For selecting colors
@@ -36,7 +38,6 @@ public class FillMapActivity extends AppCompatActivity {
 
     Button btnEnterSubmit;
     Button btnFinishCancel;
-
 
     FillMapFragment fragment; // The map
     Geocoder geocoder; // For transforming address queries into Addresses
@@ -84,13 +85,12 @@ public class FillMapActivity extends AppCompatActivity {
         initializeVariables();
 
         // Get the Intent that started this activity and extract the string
-        String message = getIntent().getStringExtra("Girl-Scout-Cookies.MESSAGE");
+        String mapName = getIntent().getStringExtra(ToMap.MAP_NAME);
+        mapID = getIntent().getIntExtra(ToMap.MAP_ID, -1);
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.top_text_view);
-        textView.setText(message);
+        textView.setText(mapName);
     }
-
-
 
     private String[] colorsToString(MyColor[] toConvert){
         String[] result = new String[toConvert.length];
@@ -106,7 +106,7 @@ public class FillMapActivity extends AppCompatActivity {
                 default:
                     result[index] ="black"; break;
             }
-            index +=1;
+            index++;
         }
         return result;
     }
@@ -139,6 +139,20 @@ public class FillMapActivity extends AppCompatActivity {
         // Pressing the finish button
 
         // TODO: Implement magic SQL stuff
+        for (Section s : addresses) {
+            int colorID;
+            // TODO: Get colorID from database
+
+            for (Address a : s.getAddresses()) {
+                int addressID;
+                // TODO: Check if address already exists
+
+                // TODO: If no, insert into the thing
+                // TODO: And immediately get the address ID
+
+                // TODO: Insert entry into database
+            }
+        }
 
         // Return to home screen
         startActivity(new Intent(this, MainActivity.class));
