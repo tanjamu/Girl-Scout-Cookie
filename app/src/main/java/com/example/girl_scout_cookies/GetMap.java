@@ -1,16 +1,14 @@
 package com.example.girl_scout_cookies;
 
-import android.app.Activity;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GetMap {
-    //functions with prepaired statments for sql
-    //functions to check for existence
+    // Functions with prepaired statments for sql
+    // Functions to check for existence
     public static boolean mapExists(String mapName, Connection conn) {
-        if (ConnectionHelp.readFromDatabase(conn, "Select * FROM Maps Where Name=" + mapName + ";") != null) {
+        if (ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Maps WHERE Name = '" + mapName + "';") != null) {
             ConnectionHelp.closeConnection(conn);
             return true;
         } else {
@@ -19,9 +17,9 @@ public class GetMap {
         }
     }
 
-    public static boolean addressExists(String adressID, String MapId, Connection conn) {
+    public static boolean addressExists(int addressID, int mapID, Connection conn) {
         try {
-            if (ConnectionHelp.readFromDatabase(conn, "Select * FROM Main Where adressID=" + adressID + " AND mapID=" + MapId + ";").next()) {
+            if (ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Main WHERE addressID = " + addressID + " AND mapID = " + mapID + ";").next()) {
                 return true;
             } else {
                 return false;
@@ -32,9 +30,9 @@ public class GetMap {
         return false;
     }
 
-    private static boolean adressexistsInA(double latitude,double longitude,Connection connection){
+    private static boolean addressExistsInA(double latitude, double longitude, Connection connection){
         try {
-            if (ConnectionHelp.readFromDatabase(connection, "Select * FROM Addresses Where latitude=" + latitude + " AND longitude=" + longitude + ";").next()) {
+            if (ConnectionHelp.readFromDatabase(connection, "SELECT * FROM Addresses WHERE latitude=" + latitude + " AND longitude=" + longitude + ";").next()) {
                 return true;
             } else {
                 return false;
@@ -44,40 +42,50 @@ public class GetMap {
         }
         return false;
     }
-    public static ResultSet getAddresses(String mapID, Connection conn) {
-        return ConnectionHelp.readFromDatabase(conn, "SELECT adressID, colorID FROM Main WHERE mapID=" + mapID + ";");
+    public static ResultSet getAddresses(int mapID, Connection conn) {
+        return ConnectionHelp.readFromDatabase(conn, "SELECT addressID, colorID FROM Main WHERE mapID = " + mapID + ";");
     }
 
-    public static String getMapId(String mapname, Connection connection) {
-        ResultSet set = ConnectionHelp.readFromDatabase(connection, "SELECT mapID FROM Maps where Name=" + mapname + ";");
+    public static int getMapID(String mapName, Connection connection) {
+        ResultSet set = ConnectionHelp.readFromDatabase(connection, "SELECT mapID FROM Maps WHERE Name = '" + mapName + "';");
+        int mapID = -1;
         try {
-            mapname = set.getString(0);
+            mapID = set.getInt(0);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return mapname;
+        return mapID;
     }
 
+    public static int getColorID(int color, Connection connection) {
+        ResultSet set = ConnectionHelp.readFromDatabase(connection, "SELECT colorID FROM Color WHERE value = " + color + ";");
+        int colorID = -1;
+        try {
+            colorID = set.getInt(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return colorID;
+    }
 
-
-    public static void updateAddress(String adressID, String colorID, String mapID, Connection connection) {
-        if (addressExists(adressID, mapID, connection)) {
-            ConnectionHelp.updateDatabase(connection, "UPDATE Main SET colorID=" + colorID + "WHERE adressId=" + adressID + "AND mapID=" + mapID + ";");
+    public static void updateAddressSafe(int addressID, int colorID, int mapID, Connection connection) {
+        if (addressExists(addressID, mapID, connection)) {
+            ConnectionHelp.updateDatabase(connection, "UPDATE Main SET colorID = " + colorID + "WHERE addressID = " + addressID + "AND mapID = " + mapID + ";");
         }else{
-            createAddress(adressID,colorID,mapID,connection);
+            createAddress(addressID, colorID, mapID, connection);
         }
     }
 
-    private static void createAddress(String adressID, String colorID, String mapID, Connection connection) {
-        ConnectionHelp.updateDatabase(connection, "INSERT INTO MAIN(mapID,adressID,colorID) VALUES(" + mapID + "," + adressID + "," + colorID + ");");
+    private static void createAddress(int addressID, int colorID, int mapID, Connection connection) {
+        ConnectionHelp.updateDatabase(connection, "INSERT INTO Main(mapID, addressID, colorID) VALUES(" + mapID + "," + addressID + "," + colorID + ");");
     }
 
-    private static void createAddressinA(double latitude,double longitude, Connection connection) {
-        ConnectionHelp.updateDatabase(connection, "INSERT INTO Address(longitude,latitude) VALUES(" + longitude+","+latitude + ")");
+    private static void createAddressInA(double latitude, double longitude, Connection connection) {
+        ConnectionHelp.updateDatabase(connection, "INSERT INTO Address(latitude, longitude) VALUES(" + latitude + "," + longitude + ")");
     }
 
     private static Integer getAddressId(double latitude,double longitude, Connection connection) {
-        ResultSet r = ConnectionHelp.readFromDatabase(connection, "SELECT id FROM Address WHERE longitude=" + longitude +"AND latitude="+latitude+ ";");
+        ResultSet r = ConnectionHelp.readFromDatabase(connection, "SELECT id FROM Address WHERE latitude = " + latitude +"AND longitude = " + longitude + ";");
         int res = -1;
         try {
             res = r.getInt(0);
@@ -87,14 +95,14 @@ public class GetMap {
         return res;
     }
     public static int getAddressIDSafe(double latitude, double longitude, Connection connection) {
-        if(!adressexistsInA(latitude,longitude,connection)){
-            createAddressinA(latitude,longitude,connection);
+        if(!addressExistsInA(latitude,longitude,connection)){
+            createAddressInA(latitude,longitude,connection);
         }
         return getAddressId(latitude,longitude,connection);
     }
 
-    private static void removeAdress(int mapId,int colorid,int addressid,Connection connection){
-        ConnectionHelp.updateDatabase(connection,"DELETE FROM MAIN WHERE mapId="+mapId+" AND colorId="+colorid+"AND addressId="+addressid+";");
+    public static void removeAddress(int mapID,int colorID,int addressID,Connection connection){
+        ConnectionHelp.updateDatabase(connection,"DELETE FROM Main WHERE mapID = " + mapID + " AND colorID = " + colorID + " AND addressID = " + addressID + ";");
     }
 
 

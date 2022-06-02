@@ -150,11 +150,11 @@ public class FillMapActivity extends AppCompatActivity {
         // Pressing the finish button
 
         Connection connection = null;
-        ConnectionHelp.connect(connection, this);
+        connection = ConnectionHelp.connect(connection, this);
 
         for (Circle c : newAddresses) {
             final int colorID = GetMap.getColorID(c.getFillColor(), connection);
-            final int addressID = GetMap.getAddressIDCreateIfNotExists(c.getCenter().latitude, c.getCenter().longitude, connection);
+            final int addressID = GetMap.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
 
             // Insert entry into database
             GetMap.updateAddressSafe(addressID, mapID, colorID, connection);
@@ -162,11 +162,10 @@ public class FillMapActivity extends AppCompatActivity {
 
         for (Circle c : removedAddresses) {
             final int colorID = GetMap.getColorID(c.getFillColor(), connection);
-            final int addressID = GetMap.getAddressIDCreateIfNotExists(c.getCenter().latitude, c.getCenter().longitude, connection);
+            final int addressID = GetMap.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
 
             // Remove entry from database
-            GetMap.removeAddressSafe(addressID, mapID, colorID, connection);
-
+            GetMap.removeAddress(addressID, mapID, colorID, connection);
         }
 
         ConnectionHelp.closeConnection(connection);
