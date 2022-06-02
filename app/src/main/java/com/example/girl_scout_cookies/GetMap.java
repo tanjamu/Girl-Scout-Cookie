@@ -17,14 +17,20 @@ public class GetMap {
         }
     }
 
-    public boolean addressExists() {
-        return false;
+    public static boolean addressExists(String adressID,Connection conn) {
+        if(ConnectionHelp.readFromDatabase(conn,"Select * FROM Main Where adressID="+adressID+";") != null){
+            ConnectionHelp.closeConnection(conn);
+            return true;
+        }else{
+            ConnectionHelp.closeConnection(conn);
+            return false;
+        }
     }
 
-    public ResultSet getAdressesFMID(String mapID,Connection conn){
-        return ConnectionHelp.readFromDatabase(conn,"SELECT adressID, colorID FROM MAIN WHERE mapID="+mapID+";");
+    public static ResultSet getAdressesFMID(String mapID,Connection conn){
+        return ConnectionHelp.readFromDatabase(conn,"SELECT adressID, colorID FROM Main WHERE mapID="+mapID+";");
     }
-    public String getMapId(String mapname,Connection connection){
+    public static String getMapId(String mapname,Connection connection){
         ResultSet set =ConnectionHelp.readFromDatabase(connection,"SELECT mapID FROM Maps where Name="+mapname+";");
         try {
             mapname=set.getString(0);
@@ -33,7 +39,7 @@ public class GetMap {
         }
         return  mapname;
     }
-    public ResultSet getAdressesFMN(String mapname,Connection conn){
+    public static ResultSet getAdressesFMN(String mapname,Connection conn){
         return getAdressesFMID(getMapId(mapname,conn),conn);
     }
 }
