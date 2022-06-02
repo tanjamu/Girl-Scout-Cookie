@@ -122,17 +122,24 @@ public class FillMapActivity extends AppCompatActivity {
 
         // TODO: Implement magic SQL stuff
         for (Section s : addresses) {
-            int colorID;
+            int colorID = -1;
             // TODO: Get colorID from database
+            String colorIDQuery = "SELECT colorID FROM Color WHERE value = " + s.getColor() + ";";
 
             for (Address a : s.getAddresses()) {
-                int addressID;
+                int addressID = -1;
                 // TODO: Check if address already exists
+                String getAddressIDQuery = "SELECT addressID FROM Address WHERE value = '" + a + "';";
 
                 // TODO: If no, insert into the thing
                 // TODO: And immediately get the address ID
+                String addAddressIDQuery = "INSERT INTO Address(value) VALUES('" + a + "');";
+
 
                 // TODO: Insert entry into database
+                String insertAddress = "INSERT INTO Main(mapID, addressID, colorID) VALUES("
+                        + mapID + ", " + addressID + ", " + colorID + ")";
+
             }
         }
 
