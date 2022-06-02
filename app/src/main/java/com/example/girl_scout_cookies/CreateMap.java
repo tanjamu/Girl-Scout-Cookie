@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.sql.Connection;
 
 public class CreateMap extends AppCompatActivity {
-
+    Connection connect = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +24,21 @@ public class CreateMap extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editTextNewCode);
         String mapName = editText.getText().toString();
 
-        // TODO: Query database: if the name exists, cancel creating the map
-        // TODO: Otherwise, create the entry into the database
-        int mapID = 0;
+        connect = ConnectionHelp.connect(connect, this);
+        if (GetMap.mapExists(mapName, connect)) {
+            TextView t = findViewById(R.id.textView2);
+            t.setText(R.string.error_existing_code);
+            ConnectionHelp.closeConnection(connect);
+        } else {
+            ConnectionHelp.closeConnection(connect);
+            int mapID = 0;
 
-        Intent intent = new Intent(this, ToMap.class);
+            Intent intent = new Intent(this, ToMap.class);
 
-        //send the map info along the intent to ToMap in extra message
-        intent.putExtra(ToMap.MAP_NAME, mapName);
-        intent.putExtra(ToMap.MAP_ID, mapID);
-        startActivity(intent);
+            //send the map info along the intent to ToMap in extra message
+            intent.putExtra(ToMap.MAP_NAME, mapName);
+            intent.putExtra(ToMap.MAP_ID, mapID);
+            startActivity(intent);
+        }
     }
 }

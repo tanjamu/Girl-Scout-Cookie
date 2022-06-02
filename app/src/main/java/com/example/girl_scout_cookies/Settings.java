@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.Connection;
+
 public class Settings extends AppCompatActivity {
+    Connection connect = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,5 +42,14 @@ public class Settings extends AppCompatActivity {
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void createTables(View view) {
+        connect = ConnectionHelp.connect(connect, this);
+        GetMap.createTable("Main(addressID INT, mapID INT, colorID INT)", connect);
+        GetMap.createTable("Address(addressID INT, latitude FLOAT(53), longitude FLOAT(53))", connect);
+        GetMap.createTable("Color(colorID INT, color BIGINT)", connect);
+        GetMap.createTable("Map(mapID INT, mapCode VARCHAR(255))", connect);
+        ConnectionHelp.closeConnection(connect);
     }
 }
