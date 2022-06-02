@@ -1,5 +1,5 @@
-1) download and install microsoft sql server mangement studio
-2) download and install microsoft expressf
+1) download and install microsoft sql server mangement studio (https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-  ver16)
+2) download and install microsoft sql server express (https://www.microsoft.com/nl-nl/sql-server/sql-server-downloads)
 3) open microsoft sql server mangement studio and connect to server
   1) enable Sql server autenication
     1) press right click on servername
@@ -22,6 +22,10 @@
       Select All User Securables
       View any database
       View server state
+  3) create database
+    1) right click databases
+    2) left click new database...
+    3) enter a database name and press ok
 4) open sql server configuration maneger
   1) enable tcp/ip under client protecols
   2) enable tcp/ip under protecols for sql express
@@ -39,4 +43,9 @@
   6) select every thing
   7) enter a name(and optionaly a discription)
   8) repeat for outbound rules
-6) open app and press the ensure database format in the settings menu(TODO)
+6) open app and input settings(TODO)
+  1) open app
+  2) go to settings
+  3) fill in the 4 setting boxes with the correct value(username, password, ip and database)(ip is the ip adress found when you run ip config in cmd)
+  4) press update
+  5) press configure database
