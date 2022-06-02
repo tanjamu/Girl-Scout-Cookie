@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.sql.Connection;
+
 public class SeeMap extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "Girl-Scout-Cookies.MESSAGE";
 
@@ -21,8 +23,14 @@ public class SeeMap extends AppCompatActivity {
         // Get the content of text field of editTextMapCode
         EditText editText = (EditText) findViewById(R.id.editTextMapCode);
         String message = editText.getText().toString();
+        Connection c=null;
+        ConnectionHelp.connect(c,this);
+        if(GetMap.mapExists(message,c)){
         // Send the content of message along the intent to ToMap in extra message
         intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        startActivity(intent);}else{
+            editText.setText("Map does not exist");
+        }
+        ConnectionHelp.closeConnection(c);
     }
 }
