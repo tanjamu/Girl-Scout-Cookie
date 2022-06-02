@@ -13,8 +13,11 @@
     4) select SQL Server autentication
     5) enter login name and password (remember this)
     6) disable enforced password policies(some times this gives an error then re enable this again and start de selecting from below)
-    7) press left click on securables
-    8) enable the following permisions:
+    7) press ok
+    8) press the + besides security
+    9) open the login that you just created
+    10) press left click on securables
+    11) enable the following permisions:
       Alter any database
       Connect Any Database
       Connect Sql
