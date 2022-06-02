@@ -2,6 +2,7 @@ package com.example.girl_scout_cookies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -35,5 +36,8 @@ public class Settings extends AppCompatActivity {
         EditText editTextPass = (EditText) findViewById(R.id.editTextPass);
         String pass = editTextPass.getText().toString();
         PreferencesHelp.setUrl(user, pass, db, ip);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
