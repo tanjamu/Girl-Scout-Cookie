@@ -43,9 +43,12 @@
   6) select every thing
   7) enter a name(and optionaly a discription)
   8) repeat for outbound rules
-6) open app and input settings(TODO)
+6)press the server name and press restart in microsoft sql server manegement studio
+7) open app and input settings(TODO)
   1) open app
   2) go to settings
   3) fill in the 4 setting boxes with the correct value(username, password, ip and database)(ip is the ip adress found when you run ip config in cmd)
   4) press update
   5) press configure database
+aditional info:
+to close the server right click on the server name and shut down
