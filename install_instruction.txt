@@ -30,8 +30,8 @@
     2) left click new database...
     3) enter a database name and press ok
 4) open sql server configuration maneger
-  1) enable tcp/ip under client protecols
-  2) enable tcp/ip under protecols for sql express
+  1) enable tcp/ip under SQL Native Client / Client Protocols
+  2) enable tcp/ip under SQL Server Network Configuratoin / Protocols for SQLEXPRESS
   3) right click tcp/ip under protecols for sql express
   4) left click properties
   5) set listen all to yes
@@ -46,7 +46,7 @@
   6) select every thing
   7) enter a name(and optionaly a discription)
   8) repeat for outbound rules
-6)press the server name and press restart in microsoft sql server manegement studio
+6) Save all and restart your device
 7) open app and input settings(TODO)
   1) open app
   2) go to settings
