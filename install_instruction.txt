@@ -1,6 +1,6 @@
 1) download and install microsoft sql server mangement studio (https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-  ver16)
 2) download and install microsoft sql server express (https://www.microsoft.com/nl-nl/sql-server/sql-server-downloads)
-3) open microsoft sql server mangement studio and connect to server
+3) open microsoft sql server mangement studio and press connect(asuming this is your first sql server the correct server should be default, other wise select the correct server)
   1) enable Sql server autenication
     1) press right click on servername
     2) press left click on properties
