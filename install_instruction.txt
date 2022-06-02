@@ -10,7 +10,7 @@
     1) press left click on security
     2) press right click on login
     3) press left click on new login
-    4) select sql server autentication
+    4) select SQL Server autentication
     5) enter login name and password (remember this)
     6) deselect enter login in name and the below boxes (some times this gives an error then re enable this again and start de selecting from below)
     7) press left click on securables
