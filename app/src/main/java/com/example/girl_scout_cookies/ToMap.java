@@ -47,24 +47,24 @@ public class ToMap extends AppCompatActivity {
         ConnectionHelp.closeConnection(connect);
 
     }
-//    public void getTextFromSQL(View view) {
-//        TextView tx1 = findViewById(R.id.textView3);
-//        TextView tx2 = findViewById(R.id.textView4);
-//
-//        connect = ConnectionHelp.connect(connect, this);
-//
-//        try {
-//            String query = "SELECT * FROM TestTable WHERE name='Bas'";
-//            ResultSet rs = ConnectionHelp.readFromDatabase(connect, query);
-//            if (rs != null) {
-//                while (rs.next()) {
-//                    tx1.setText(rs.getString(1));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            Log.e("Error ", ex.getMessage());
-//            ex.printStackTrace();
-//        }
-//        ConnectionHelp.closeConnection(connect);
-//    }
+    public void getTextFromSQL(View view) {
+        TextView tx1 = findViewById(R.id.textView3);
+        TextView tx2 = findViewById(R.id.textView4);
+
+        connect = ConnectionHelp.connect(connect, this);
+
+        try {
+            String query = "SELECT * FROM TestTable WHERE name='Bas'";
+            ResultSet rs = ConnectionHelp.readFromDatabase(connect, query);
+            if (rs != null) {
+                while (rs.next()) {
+                    tx1.setText(rs.getString(1));
+                }
+            }
+        } catch (Exception ex) {
+            Log.e("Error ", ex.getMessage());
+            ex.printStackTrace();
+        }
+        ConnectionHelp.closeConnection(connect);
+    }
 }
