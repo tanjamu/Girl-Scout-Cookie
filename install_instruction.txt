@@ -1,0 +1,57 @@
+1) download and install microsoft sql server mangement studio (https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-  ver16)
+2) download and install microsoft sql server express (https://www.microsoft.com/nl-nl/sql-server/sql-server-downloads)
+3) open microsoft sql server mangement studio and press connect(asuming this is your first sql server the correct server should be default, other wise select the correct server)
+  1) enable Sql server autenication
+    1) press right click on servername
+    2) press left click on properties
+    3) press left click on security
+    4) enable Sql server autenication
+  2) create login
+    1) press left click on security
+    2) press right click on login
+    3) press left click on new login
+    4) select SQL Server autentication
+    5) enter login name and password (remember this)
+    6) disable enforced password policies(some times this gives an error then re enable this again and start de selecting from below)
+    7) press ok
+    8) press the + besides security
+    9) open the login that you just created
+    10) press left click on securables
+    11) enable the following permisions:
+      Alter any database
+      Connect Any Database
+      Connect Sql
+      Create any database
+      Select All User Securables
+      View any database
+      View server state
+  3) create database
+    1) right click databases
+    2) left click new database...
+    3) enter a database name and press ok
+4) open sql server configuration maneger
+  1) enable tcp/ip under SQL Native Client / Client Protocols
+  2) enable tcp/ip under SQL Server Network Configuratoin / Protocols for SQLEXPRESS
+  3) right click tcp/ip under protecols for sql express
+  4) left click properties
+  5) set listen all to yes
+  6) enable all ip protcols
+  7) set the tcp port under listen all to 1433
+5) open windows advanced firewall settings
+  1) left click inbound rules 
+  2) left click new rule
+  3) select port
+  4) enter in the port box 1433
+  5) allow connection
+  6) select every thing
+  7) enter a name(and optionaly a discription)
+  8) repeat for outbound rules
+6) Save all and restart your device
+7) open app and input settings(TODO)
+  1) open app
+  2) go to settings
+  3) fill in the 4 setting boxes with the correct value(username, password, ip and database)(ip is the ip adress found when you run ip config in cmd)
+  4) press update
+  5) press configure database
+aditional info:
+to close the server right click on the server name and shut down
