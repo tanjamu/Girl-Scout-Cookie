@@ -12,7 +12,7 @@
     3) press left click on new login
     4) select SQL Server autentication
     5) enter login name and password (remember this)
-    6) deselect enter login in name and the below boxes (some times this gives an error then re enable this again and start de selecting from below)
+    6) disable enforced password policies(some times this gives an error then re enable this again and start de selecting from below)
     7) press left click on securables
     8) enable the following permisions:
       Alter any database
