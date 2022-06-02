@@ -21,16 +21,36 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.common.util.ArrayUtils;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.lang.Object;
-import java.util.LinkedList;
-import java.util.List;
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.CallableStatement;
+import java.sql.Clob;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.NClob;
+import java.sql.PreparedStatement;
+import java.sql.SQLClientInfoException;
+import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.sql.SQLXML;
+import java.sql.Savepoint;
+import java.sql.Statement;
+import java.sql.Struct;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Properties;
 
 public class FillMapActivity extends AppCompatActivity {
     int mapID;
+    GoogleMap mMap;
     TextView errorTextView; // For displaying error messages to the user
     TextView addressTextView; // For entering addresses to add to the map
     Spinner spinner; // For selecting colors
@@ -44,10 +64,13 @@ public class FillMapActivity extends AppCompatActivity {
     Address address;
     LatLng latLng;
     Marker marker;
+    Circle circle;
 
 
     int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW,Color.MAGENTA, Color.CYAN, Color.WHITE}; // Change this to all possible color enums
-    List<Section> addresses = new LinkedList<>();
+    Collection<Circle> addresses = new HashSet<>();
+    Collection<Circle> newAddresses = new HashSet<>();
+    Collection<Circle> removedAddresses = new HashSet<>();
 
 
     private void initializeVariables() {
@@ -59,6 +82,8 @@ public class FillMapActivity extends AppCompatActivity {
                 new String[]{"red", "blue", "green", "yellow", "magenta", "cyan", "white"}); // Fills the spinner
 
         fragment = (FillMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        mMap = fragment.getmMap();
+        mMap.setOnCircleClickListener(this::onCircleClick);
         geocoder = new Geocoder(getApplicationContext());
 
         btnEnterSubmit = findViewById(R.id.enter_submit_button);
@@ -69,10 +94,6 @@ public class FillMapActivity extends AppCompatActivity {
 
         spinner.setAdapter(arrayAdapter);
         spinner.setVisibility(View.GONE);
-
-        for (int color : colors) {
-            addresses.add(new Section(new LinkedList<>(), color));
-        }
     }
 
     @Override
@@ -92,6 +113,11 @@ public class FillMapActivity extends AppCompatActivity {
         textView.setText(mapName);
     }
 
+    public void onCircleClick(Circle circle) {
+        latLng = circle.getCenter();
+        marker = fragment.addMarker(latLng); // Places marker for feedback to user
+        swapToDeleteAddress();
+    }
 
     private void Enter(View view) {
         // Pressing the enter button
@@ -101,7 +127,7 @@ public class FillMapActivity extends AppCompatActivity {
         } catch (Exception e) {
             // Show error to user and abort
             errorTextView.setText(R.string.error_finding_address);
-            swapToPrimary();
+            swapToEnterAddress();
             return;
         }
         latLng = new LatLng(address.getLatitude(), address.getLongitude());
@@ -113,28 +139,36 @@ public class FillMapActivity extends AppCompatActivity {
         // Pressing the submit button
         marker.remove(); // Temporary marker gets removed
         final int colorIndex = spinner.getSelectedItemPosition();
-        fragment.addCircle(latLng, colors[colorIndex]);
-        addresses.get(colorIndex).addAddress(address);
+
+        Circle circle = fragment.addCircle(latLng, colors[colorIndex]);
+
+        addresses.add(circle);
+        newAddresses.add(circle);
     }
 
     private void Finish(View view) {
         // Pressing the finish button
 
-        // TODO: Implement magic SQL stuff
-        for (Section s : addresses) {
-            int colorID;
-            // TODO: Get colorID from database
+        Connection connection = null;
+        ConnectionHelp.connect(connection, this);
 
-            for (Address a : s.getAddresses()) {
-                int addressID;
-                // TODO: Check if address already exists
+        for (Circle c : newAddresses) {
+            final int colorID = GetMap.getColorID(c.getFillColor(), connection);
+            final int addressID = GetMap.getAddressIDCreateIfNotExists(c.getCenter().latitude, c.getCenter().longitude, connection);
 
-                // TODO: If no, insert into the thing
-                // TODO: And immediately get the address ID
-
-                // TODO: Insert entry into database
-            }
+            // Insert entry into database
+            GetMap.updateAddressSafe(addressID, mapID, colorID, connection);
         }
+
+        for (Circle c : removedAddresses) {
+            final int colorID = GetMap.getColorID(c.getFillColor(), connection);
+            final int addressID = GetMap.getAddressIDCreateIfNotExists(c.getCenter().latitude, c.getCenter().longitude, connection);
+
+            // Remove entry from database
+            GetMap.removeAddressSafe(addressID, mapID, colorID, connection);
+        }
+
+        ConnectionHelp.closeConnection(connection);
 
         // Return to home screen
         startActivity(new Intent(this, MainActivity.class));
@@ -145,7 +179,14 @@ public class FillMapActivity extends AppCompatActivity {
         marker.remove(); // Remove temporary marker
     }
 
-    private void swapToPrimary() {
+    private void Delete(View view) {
+        // Pressing the delete button
+        addresses.remove(circle);
+        newAddresses.remove(circle);
+        removedAddresses.add(circle);
+    }
+
+    private void swapToEnterAddress() {
         // Shows the addressTextView, Enter button and Finish button
         // Hides other components
         btnEnterSubmit.setText(R.string.enter);
@@ -154,7 +195,7 @@ public class FillMapActivity extends AppCompatActivity {
         addressTextView.setVisibility(View.VISIBLE);
     }
 
-    private void swapToSecondary() {
+    private void swapToSubmitAddress() {
         // Shows the spinner, Submit button and Cancel button
         // Hides other components
         btnEnterSubmit.setText(R.string.submit);
@@ -163,12 +204,21 @@ public class FillMapActivity extends AppCompatActivity {
         addressTextView.setVisibility(View.GONE);
     }
 
+    private void swapToDeleteAddress() {
+        // Shows the Delete button and Cancel button
+        // Hides other components
+        btnEnterSubmit.setText(R.string.delete);
+        btnFinishCancel.setText(R.string.cancel);
+        spinner.setVisibility(View.GONE);
+        addressTextView.setVisibility(View.GONE);
+    }
+
     private void EnterSubmit(View view) {
         if (btnEnterSubmit.getText().equals(getString(R.string.enter))) {
-            swapToSecondary(); // Toggle button text
+            swapToSubmitAddress(); // Toggle button text
             Enter(view);
         } else {
-            swapToPrimary(); // Toggle button text
+            swapToEnterAddress(); // Toggle button text
             Submit(view);
         }
     }
@@ -176,10 +226,12 @@ public class FillMapActivity extends AppCompatActivity {
     private void FinishCancel(View view) {
         if (btnFinishCancel.getText().equals(getString(R.string.finish))) {
             Finish(view);
+        } else if (btnFinishCancel.getText().equals(getString(R.string.delete))) {
+            Delete(view);
+            swapToEnterAddress();
         } else {
-            swapToPrimary(); // Toggle button text
+            swapToEnterAddress(); // Toggle button text
             Cancel(view);
         }
     }
-
 }
