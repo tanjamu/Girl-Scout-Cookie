@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/editTextIP"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="ip"
@@ -21,7 +21,7 @@
 
     <EditText
         android:id="@+id/editTextUser"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="username"
@@ -35,7 +35,7 @@
 
     <EditText
         android:id="@+id/editTextPass"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="password"
@@ -49,7 +49,7 @@
 
     <EditText
         android:id="@+id/editTextDB"
-        android:layout_width="wrap_content"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="database"
@@ -63,11 +63,11 @@
 
     <Button
         android:id="@+id/buttonUpdate"
-        android:layout_width="wrap_content"
+        android:layout_width="93dp"
         android:layout_height="wrap_content"
         android:onClick="updateSettings"
         android:text="@string/update"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCreateTables"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
     <TextView
         android:id="@+id/textViewIP"
         android:layout_width="211dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:text="@string/ip"
         app:layout_constraintBottom_toTopOf="@+id/editTextIP"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
     <TextView
         android:id="@+id/textViewDB"
         android:layout_width="211dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:text="@string/database"
         app:layout_constraintBottom_toTopOf="@+id/editTextDB"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,7 +98,7 @@
     <TextView
         android:id="@+id/textViewUser"
         android:layout_width="211dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:text="@string/user"
         app:layout_constraintBottom_toTopOf="@+id/editTextUser"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,11 +109,24 @@
     <TextView
         android:id="@+id/textViewPass"
         android:layout_width="211dp"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:text="@string/pass"
         app:layout_constraintBottom_toTopOf="@+id/editTextPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUser" />
+
+    <Button
+        android:id="@+id/buttonCreateTables"
+        android:layout_width="273dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="createTables"
+        android:text="@string/create_db_tables"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpdate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.sql.Connection;
 
@@ -25,11 +26,12 @@ public class SeeMap extends AppCompatActivity {
         String mapName = editText.getText().toString();
         Connection c=null;
         ConnectionHelp.connect(c,this);
-        if(GetMap.mapExists(mapName,c)){
+        if(GetMap.mapExists(mapName, c)){
         // Send the content of message along the intent to ToMap in extra message
         intent.putExtra(ToMap.MAP_NAME, mapName);
         startActivity(intent);}else{
-            editText.setText("Map does not exist");
+            TextView t = findViewById(R.id.textView5);
+            t.setText(R.string.not_existing_map);
         }
         ConnectionHelp.closeConnection(c);
     }

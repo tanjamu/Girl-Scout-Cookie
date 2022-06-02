@@ -28,7 +28,9 @@ public class CreateMap extends AppCompatActivity {
         if (GetMap.mapExists(mapName, connect)) {
             TextView t = findViewById(R.id.textView2);
             t.setText(R.string.error_existing_code);
+            ConnectionHelp.closeConnection(connect);
         } else {
+            ConnectionHelp.closeConnection(connect);
             int mapID = 0;
 
             Intent intent = new Intent(this, ToMap.class);
@@ -38,7 +40,5 @@ public class CreateMap extends AppCompatActivity {
             intent.putExtra(ToMap.MAP_ID, mapID);
             startActivity(intent);
         }
-
-
     }
 }
