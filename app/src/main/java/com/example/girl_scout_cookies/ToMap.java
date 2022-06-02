@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 
 public class ToMap extends AppCompatActivity {
-    Connection connect = null;
+    private Connection connect = null;
     public static final String MAP_NAME = "Girl-Scout-Cookies.MAP_NAME";
     public static final String MAP_ID = "Girl-Scout-Cookies.MAP_ID";
 
@@ -42,26 +42,29 @@ public class ToMap extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
         textView.setText(mapName);
-    }
+        connect=ConnectionHelp.connect(connect,this);
+        //TO DO: get map info
+        ConnectionHelp.closeConnection(connect);
 
-//    public void getTextFromSQL(View view) {
-//        TextView tx1 = findViewById(R.id.textView3);
-//        TextView tx2 = findViewById(R.id.textView4);
-//
-//        connect = ConnectionHelp.connect(connect, this);
-//
-//        try {
-//            String query = "SELECT * FROM TestTable WHERE name='Bas'";
-//            ResultSet rs = ConnectionHelp.readFromDatabase(connect, query);
-//            if (rs != null) {
-//                while (rs.next()) {
-//                    tx1.setText(rs.getString(1));
-//                }
-//            }
-//        } catch (Exception ex) {
-//            Log.e("Error ", ex.getMessage());
-//            ex.printStackTrace();
-//        }
-//        ConnectionHelp.closeConnection(connect);
-//    }
+    }
+    public void getTextFromSQL(View view) {
+        TextView tx1 = findViewById(R.id.textView3);
+        TextView tx2 = findViewById(R.id.textView4);
+
+        connect = ConnectionHelp.connect(connect, this);
+
+        try {
+            String query = "SELECT * FROM TestTable WHERE name='Bas'";
+            ResultSet rs = ConnectionHelp.readFromDatabase(connect, query);
+            if (rs != null) {
+                while (rs.next()) {
+                    tx1.setText(rs.getString(1));
+                }
+            }
+        } catch (Exception ex) {
+            Log.e("Error ", ex.getMessage());
+            ex.printStackTrace();
+        }
+        ConnectionHelp.closeConnection(connect);
+    }
 }

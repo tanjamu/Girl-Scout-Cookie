@@ -166,6 +166,7 @@ public class FillMapActivity extends AppCompatActivity {
 
             // Remove entry from database
             GetMap.removeAddressSafe(addressID, mapID, colorID, connection);
+
         }
 
         ConnectionHelp.closeConnection(connection);

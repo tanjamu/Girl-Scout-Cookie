@@ -30,7 +30,7 @@ android {
         viewBinding true
     }
 }
-
+ // Je hebt nergens MAPS_API_KEY ingesteld en daarom lukt het geloof ik niet. Ik heb overigens geen idee waar dat zou moeten
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.3.0'

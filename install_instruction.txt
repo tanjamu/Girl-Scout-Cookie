@@ -10,11 +10,14 @@
     1) press left click on security
     2) press right click on login
     3) press left click on new login
-    4) select sql server autentication
+    4) select SQL Server autentication
     5) enter login name and password (remember this)
-    6) deselect enter login in name and the below boxes (some times this gives an error then re enable this again and start de selecting from below)
-    7) press left click on securables
-    8) enable the following permisions:
+    6) disable enforced password policies(some times this gives an error then re enable this again and start de selecting from below)
+    7) press ok
+    8) press the + besides security
+    9) open the login that you just created
+    10) press left click on securables
+    11) enable the following permisions:
       Alter any database
       Connect Any Database
       Connect Sql
@@ -27,8 +30,8 @@
     2) left click new database...
     3) enter a database name and press ok
 4) open sql server configuration maneger
-  1) enable tcp/ip under client protecols
-  2) enable tcp/ip under protecols for sql express
+  1) enable tcp/ip under SQL Native Client / Client Protocols
+  2) enable tcp/ip under SQL Server Network Configuratoin / Protocols for SQLEXPRESS
   3) right click tcp/ip under protecols for sql express
   4) left click properties
   5) set listen all to yes
@@ -43,7 +46,7 @@
   6) select every thing
   7) enter a name(and optionaly a discription)
   8) repeat for outbound rules
-6)press the server name and press restart in microsoft sql server manegement studio
+6) Save all and restart your device
 7) open app and input settings(TODO)
   1) open app
   2) go to settings
