@@ -2,12 +2,15 @@
     <string name="app_name">Girl-Scout-Cookies</string>
     <string name="see_map_button">See an existing map</string>
     <string name="create_map_button">Create a new map</string>
-    <string name="enter">Enter</string>
-    <string name="finish">Finish</string>
-    <string name="submit">Submit</string>
+
     <string name="cancel">Cancel</string>
-    <string name="update">Update</string>
+    <string name="save">Save</string>
+
+    <string name="enter">Enter</string>
+    <string name="submit">Submit</string>
     <string name="delete">Delete</string>
+
+    <string name="update">Update</string>
     <string name="settings">Settings</string>
     <string name="enter_map_code">Enter the code of your map</string>
     <string name="enter_new_code">Enter a new code for your map</string>

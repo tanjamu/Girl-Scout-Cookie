@@ -74,18 +74,18 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/enter_submit_button"
+                android:id="@+id/cancel_save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="@string/save" />
+
+            <Button
+                android:id="@+id/enter_submit_delete_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
                 android:text="@string/enter" />
-
-            <Button
-                android:id="@+id/finish_cancel_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:text="@string/finish" />
         </LinearLayout>
 
     </LinearLayout>
