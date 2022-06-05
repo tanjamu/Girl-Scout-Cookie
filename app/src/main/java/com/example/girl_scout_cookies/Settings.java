@@ -44,7 +44,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void createTables(View view) {
-        connect = ConnectionHelp.openConnection(connect, this);
+        connect = ConnectionHelp.openConnection(this);
         GetMap.createTable("Main(addressID INT, mapID INT, colorID INT)", connect);
         GetMap.createTable("Address(addressID INT, latitude FLOAT(53), longitude FLOAT(53))", connect);
         GetMap.createTable("Color(colorID INT, color BIGINT)", connect);

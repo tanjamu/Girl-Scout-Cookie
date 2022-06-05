@@ -110,8 +110,7 @@ public class FillMapBackend {
      * Adds all new markers to the database and deletes all removed markers.
      */
     public void Save() {
-        Connection connection = null;
-        connection = ConnectionHelp.openConnection(connection, fillMapActivity);
+        Connection connection = ConnectionHelp.openConnection(fillMapActivity);
 
         for (Circle c : newAddresses) {
             final int colorID = GetMap.getColorID(c.getFillColor(), connection);
