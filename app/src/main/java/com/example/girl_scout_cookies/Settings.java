@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.sql.Connection;
 
@@ -45,7 +44,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void createTables(View view) {
-        connect = ConnectionHelp.connect(connect, this);
+        connect = ConnectionHelp.openConnection(connect, this);
         GetMap.createTable("Main(addressID INT, mapID INT, colorID INT)", connect);
         GetMap.createTable("Address(addressID INT, latitude FLOAT(53), longitude FLOAT(53))", connect);
         GetMap.createTable("Color(colorID INT, color BIGINT)", connect);

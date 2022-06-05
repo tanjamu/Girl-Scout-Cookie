@@ -25,7 +25,7 @@ public class SeeMap extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editTextMapCode);
         String mapName = editText.getText().toString();
         Connection c=null;
-        ConnectionHelp.connect(c,this);
+        ConnectionHelp.openConnection(c,this);
         if(GetMap.mapExists(mapName, c)){
         // Send the content of message along the intent to ToMap in extra message
         intent.putExtra(ToMap.MAP_NAME, mapName);

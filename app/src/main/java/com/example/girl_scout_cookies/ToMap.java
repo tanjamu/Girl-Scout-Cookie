@@ -42,7 +42,7 @@ public class ToMap extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView);
         textView.setText(mapName);
-        connect=ConnectionHelp.connect(connect,this);
+        connect=ConnectionHelp.openConnection(connect,this);
         //TO DO: get map info
         ConnectionHelp.closeConnection(connect);
 
@@ -51,7 +51,7 @@ public class ToMap extends AppCompatActivity {
         TextView tx1 = findViewById(R.id.textView3);
         TextView tx2 = findViewById(R.id.textView4);
 
-        connect = ConnectionHelp.connect(connect, this);
+        connect = ConnectionHelp.openConnection(connect, this);
 
         try {
             String query = "SELECT * FROM TestTable WHERE name='Bas'";

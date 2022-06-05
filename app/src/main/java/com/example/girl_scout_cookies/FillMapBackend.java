@@ -111,7 +111,7 @@ public class FillMapBackend {
      */
     public void Save() {
         Connection connection = null;
-        connection = ConnectionHelp.connect(connection, fillMapActivity);
+        connection = ConnectionHelp.openConnection(connection, fillMapActivity);
 
         for (Circle c : newAddresses) {
             final int colorID = GetMap.getColorID(c.getFillColor(), connection);
