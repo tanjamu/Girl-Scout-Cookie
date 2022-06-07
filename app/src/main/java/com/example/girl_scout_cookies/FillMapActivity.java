@@ -17,6 +17,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
 public class FillMapActivity extends AppCompatActivity {
+    public static final String MAP_NAME = "Girl-Scout-Cookies.MAP_NAME";
+    public static final String MAP_ID = "Girl-Scout-Cookies.MAP_ID";
+
     FillMapBackend fillMapBackend;
 
     TextView mapNameTextView;
@@ -64,7 +67,7 @@ public class FillMapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fill_map);
 
         mapNameTextView = findViewById(R.id.top_text_view);
-        mapNameTextView.setText(getIntent().getStringExtra(ToMap.MAP_NAME));
+        mapNameTextView.setText(getIntent().getStringExtra(MAP_NAME));
 
         errorTextView = findViewById(R.id.error_text_view); // For displaying error messages to the user
         addressTextView = findViewById(R.id.address_input); // For entering addresses to add to the map
@@ -86,7 +89,7 @@ public class FillMapActivity extends AppCompatActivity {
 
         fillMapBackend = new FillMapBackend(
                 this,
-                getIntent().getIntExtra(ToMap.MAP_ID, -1)
+                getIntent().getIntExtra(MAP_ID, -1)
         );
 
         // Initialize all variables by finding them from the view
