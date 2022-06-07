@@ -35,20 +35,8 @@ public class CreateMap extends AppCompatActivity {
             GetMap.createMap(mapName,connect);
             int mapID = GetMap.getMapID(mapName,connect);
             ConnectionHelp.closeConnection(connect);
-//            Intent intent = new Intent(this, ToMap.class);
-//
-//            //send the map info along the intent to ToMap in extra message
-//            intent.putExtra(ToMap.MAP_NAME, mapName);
-//            intent.putExtra(ToMap.MAP_ID, mapID);
-//            startActivity(intent);
-            Intent intent;
-            if (mapName.equals("test")) {
-                // Display test map
-                intent = new Intent(this, TestMapsActivity.class);
-            } else {
-                // Display fill map
-                intent = new Intent(this, FillMapActivity.class);
-            }
+
+            Intent intent = new Intent(this, FillMapActivity.class);
 
             // Send the content of message along the intent to ToMap in extra message
             intent.putExtra(MAP_NAME, mapName);

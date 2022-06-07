@@ -51,7 +51,7 @@ public class GetMap {
      */
     private static boolean addressExistsInA(double latitude, double longitude, Connection conn) {
         try {
-            return ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Addresses WHERE latitude=" + latitude + " AND longitude=" + longitude + ";").next();
+            return ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Address WHERE latitude=" + latitude + " AND longitude=" + longitude + ";").next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -95,7 +95,7 @@ public class GetMap {
      * @return colorID of color
      */
     public static int getColorID(int color, Connection conn) {
-        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT colorID FROM Color WHERE value = " + color + ";");
+        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT colorID FROM Color WHERE color = " + color + ";");
         int colorID = -1;
         try {
             colorID = set.getInt(1);
@@ -153,7 +153,7 @@ public class GetMap {
      * @return addressID of address
      */
     private static Integer getAddressID(double latitude, double longitude, Connection conn) {
-        ResultSet r = ConnectionHelp.readFromDatabase(conn, "SELECT id FROM Address WHERE latitude = " + latitude + "AND longitude = " + longitude + ";");
+        ResultSet r = ConnectionHelp.readFromDatabase(conn, "SELECT addressID FROM Address WHERE latitude = " + latitude + "AND longitude = " + longitude + ";");
         int res = -1;
         try {
             res = r.getInt(1);
