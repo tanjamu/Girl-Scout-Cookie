@@ -19,11 +19,7 @@ public class GetMap {
 
     public static boolean addressExists(int addressID, int mapID, Connection conn) {
         try {
-            if (ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Main WHERE addressID = " + addressID + " AND mapID = " + mapID + ";").next()) {
-                return true;
-            } else {
-                return false;
-            }
+            return ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Main WHERE addressID = " + addressID + " AND mapID = " + mapID + ";").next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -32,11 +28,7 @@ public class GetMap {
 
     private static boolean addressExistsInA(double latitude, double longitude, Connection connection){
         try {
-            if (ConnectionHelp.readFromDatabase(connection, "SELECT * FROM Addresses WHERE latitude=" + latitude + " AND longitude=" + longitude + ";").next()) {
-                return true;
-            } else {
-                return false;
-            }
+            return ConnectionHelp.readFromDatabase(connection, "SELECT * FROM Addresses WHERE latitude=" + latitude + " AND longitude=" + longitude + ";").next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
