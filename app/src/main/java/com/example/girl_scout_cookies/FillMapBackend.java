@@ -38,7 +38,6 @@ public class FillMapBackend {
         Connection connection = ConnectionHelp.openConnection(fillMapActivity);
         ResultSet resultSet = GetMap.getAddresses(mapID, connection);
         try {
-            resultSet.beforeFirst();
             while (resultSet.next()) {
                 double latitude, longitude;
                 int color;
@@ -52,7 +51,6 @@ public class FillMapBackend {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -138,7 +136,7 @@ public class FillMapBackend {
             final int addressID = GetMap.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
 
             // Insert entry into database
-            GetMap.updateAddressSafe(addressID, mapID, colorID, connection);
+            GetMap.updateAddressSafe(addressID, colorID, mapID, connection);
         }
 
         for (Circle c : removedAddresses) {
@@ -146,7 +144,7 @@ public class FillMapBackend {
             final int addressID = GetMap.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
 
             // Remove entry from database
-            GetMap.removeAddress(addressID, mapID, colorID, connection);
+            GetMap.removeAddress(addressID, colorID, mapID, connection);
         }
 
         ConnectionHelp.closeConnection(connection);
