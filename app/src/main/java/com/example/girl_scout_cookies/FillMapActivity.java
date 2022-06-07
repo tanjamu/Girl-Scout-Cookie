@@ -1,5 +1,6 @@
 package com.example.girl_scout_cookies;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -47,6 +48,10 @@ public class FillMapActivity extends AppCompatActivity {
     /**
      * Gets all variables from the activity and matches them to the local variables
      */
+    public void initializeMap(GoogleMap mMap) { ;
+        mMap.setOnCircleClickListener(this::onCircleClick);
+    }
+
     private void initializeVariables() {
         setContentView(R.layout.activity_fill_map);
 
@@ -59,8 +64,6 @@ public class FillMapActivity extends AppCompatActivity {
         initializeSpinner();
 
         fragment = (FillMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
-        mMap = fragment.getmMap();
-        mMap.setOnCircleClickListener(this::onCircleClick);
 
         btnEnterSubmitDelete = findViewById(R.id.enter_submit_delete_button);
         btnCancelSave = findViewById(R.id.cancel_save_button);

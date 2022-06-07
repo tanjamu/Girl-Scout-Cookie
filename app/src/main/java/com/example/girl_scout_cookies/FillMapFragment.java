@@ -26,8 +26,11 @@ public class FillMapFragment extends Fragment {
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         @Override
-        public void onMapReady(GoogleMap googleMap) {
+        public void onMapReady(@NonNull GoogleMap googleMap) {
             mMap = googleMap;
+
+            ((FillMapActivity) getActivity()).initializeMap(mMap);
+
             LatLng netherlands = new LatLng(52.1, 5.4);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(netherlands));
             mMap.moveCamera(CameraUpdateFactory.zoomTo(7f));

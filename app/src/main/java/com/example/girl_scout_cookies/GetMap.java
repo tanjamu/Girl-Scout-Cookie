@@ -49,7 +49,7 @@ public class GetMap {
      */
     private static boolean addressExistsInA(double latitude, double longitude, Connection conn){
         try {
-            return ConnectionHelp.readFromDatabase(connection, "SELECT * FROM Addresses WHERE latitude=" + latitude + " AND longitude=" + longitude + ";").next();
+            return ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Addresses WHERE latitude=" + latitude + " AND longitude=" + longitude + ";").next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
