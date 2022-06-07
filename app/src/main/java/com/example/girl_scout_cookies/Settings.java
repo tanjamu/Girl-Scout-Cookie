@@ -49,8 +49,6 @@ public class Settings extends AppCompatActivity {
         GetMap.createTable("Address(addressID INT IDENTITY(1,1) PRIMARY KEY, latitude FLOAT(53), longitude FLOAT(53))", connect);
         GetMap.createTable("Color(colorID INT IDENTITY(1,1) PRIMARY KEY, color BIGINT)", connect);
         GetMap.createTable("Map(mapID INT IDENTITY(1,1) PRIMARY KEY, Name VARCHAR(255))", connect);
-        GetMap.createMap("nap",connect);
-        System.out.println(GetMap.getMapID("nap",connect));
         ConnectionHelp.closeConnection(connect);
     }
 }
