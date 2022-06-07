@@ -25,8 +25,7 @@ public class FillMapBackend {
 
     final Geocoder geocoder; // For transforming address queries into Addresses
 
-    int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW,Color.MAGENTA, Color.CYAN, Color.WHITE}; // Change this to all possible color enums
-
+    int[] colors = MyColor.getColors();
     public FillMapBackend(FillMapActivity fillMapActivity, int mapID) {
         this.fillMapActivity = fillMapActivity;
         this.mapID = mapID;

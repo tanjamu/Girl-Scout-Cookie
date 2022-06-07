@@ -16,7 +16,6 @@ public class MyColor {
          this.color = (0xff) << 24 | (r & 0xff) << 16 | (g & 0xff) << 8 | (b & 0xff);
 
 
-
      };
 
      public String toString(){
@@ -25,6 +24,10 @@ public class MyColor {
 
      public int getColor(){
          return this.color;
+     }
+
+     public static int[] getColors() {
+         return new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW,Color.MAGENTA, Color.CYAN, Color.WHITE};
      }
 
 }
