@@ -205,6 +205,17 @@ public class GetMap {
     }
 
     /**
+     * Drops a table if it exists
+     *
+     * @param tableName table name to be dropped
+     * @param conn      connection to the database
+     */
+    public static void dropTable(String tableName, Connection conn) {
+        String query = "DROP TABLE IF EXISTS " + PreferencesHelp.getUser() + "." + tableName + ";";
+        ConnectionHelp.updateDatabase(conn, query);
+    }
+
+    /**
      * adds a color to the table Color of the database
      *
      * @param color int indicating the color

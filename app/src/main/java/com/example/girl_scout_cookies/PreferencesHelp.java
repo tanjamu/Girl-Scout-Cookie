@@ -8,6 +8,11 @@ public class PreferencesHelp {
         MainActivity.preferences.edit().putString("ip", ip).apply();
     }
 
+    public static String getUser() {
+        return MainActivity.preferences.getString("user", "def_user");
+    }
+
+
     public static String getUrl() {
         String user = MainActivity.preferences.getString("user", "def_user");
         String password = MainActivity.preferences.getString("password", "def_password");
