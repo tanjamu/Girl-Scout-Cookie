@@ -39,7 +39,7 @@ public class FillMapActivity extends AppCompatActivity {
                 new ArrayAdapter<>(
                         this,
                         androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                        new String[]{"red", "blue", "green", "yellow", "magenta", "cyan", "white"}
+                        MyColor.getColorStrings()
                 )
         );
         spinner.setVisibility(View.GONE);
@@ -135,7 +135,6 @@ public class FillMapActivity extends AppCompatActivity {
      * @param view the current view
      */
     private void CancelSave(View view) {
-        swapToEnterAddress();
         if (btnCancelSave.getText().equals(getString(R.string.cancel))) {
             fillMapBackend.Cancel();
         } else {
@@ -143,6 +142,7 @@ public class FillMapActivity extends AppCompatActivity {
             // Return to home screen
             startActivity(new Intent(this, MainActivity.class));
         }
+        swapToEnterAddress();
     }
 
     /**

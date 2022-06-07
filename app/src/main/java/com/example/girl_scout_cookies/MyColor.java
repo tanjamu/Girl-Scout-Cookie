@@ -6,28 +6,33 @@ import static android.graphics.Color.rgb;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
 
-public class MyColor {
+public final class MyColor {
 
-    int color;
-    String name;
+    final static int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW,Color.MAGENTA, Color.CYAN, Color.WHITE};
 
-     public MyColor( int r, int g, int b, String nameParam ){
-         this.name = nameParam;
-         this.color = (0xff) << 24 | (r & 0xff) << 16 | (g & 0xff) << 8 | (b & 0xff);
+    public static String colorToString(int color) {
+        switch (color) {
+            case Color.RED: return "Red";
+            case Color.BLUE: return "Blue";
+            case Color.GREEN: return "Green";
+            case Color.YELLOW: return "Yellow";
+            case Color.MAGENTA: return "Magenta";
+            case Color.CYAN: return "Cyan";
+            case Color.WHITE: return "White";
+            default: return "Unknown";
+        }
+    }
 
+    public static int[] getColors() {
+        return colors;
+    }
 
-     };
-
-     public String toString(){
-         return this.name;
-     }
-
-     public int getColor(){
-         return this.color;
-     }
-
-     public static int[] getColors() {
-         return new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW,Color.MAGENTA, Color.CYAN, Color.WHITE};
-     }
+    public static String[] getColorStrings() {
+        String[] colorStrings = new String[colors.length];
+        for (int i = 0; i < colors.length; ++i) {
+            colorStrings[i] = colorToString(colors[i]);
+        }
+        return colorStrings;
+    }
 
 }
