@@ -39,7 +39,7 @@ public class FillMapActivity extends AppCompatActivity {
                 new ArrayAdapter<>(
                         this,
                         androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                        new String[]{"red", "blue", "green", "yellow", "magenta", "cyan", "white"}
+                        MyColor.getColorStrings()
                 )
         );
         spinner.setVisibility(View.GONE);
