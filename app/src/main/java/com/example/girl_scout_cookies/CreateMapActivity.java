@@ -32,8 +32,8 @@ public class CreateMapActivity extends AppCompatActivity {
             t.setText(R.string.error_existing_code);
             ConnectionHelp.closeConnection(connect);
         } else {
-            SQLHelp.createMap(mapName,connect);
-            int mapID = SQLHelp.getMapID(mapName,connect);
+            SQLHelp.createMap(mapName, connect);
+            int mapID = SQLHelp.getMapID(mapName, connect);
             ConnectionHelp.closeConnection(connect);
 
             Intent intent = new Intent(this, FillMapActivity.class);

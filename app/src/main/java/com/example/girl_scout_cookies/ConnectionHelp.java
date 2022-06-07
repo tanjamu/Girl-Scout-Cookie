@@ -22,24 +22,23 @@ import androidx.core.app.ActivityCompat;
 
 public class ConnectionHelp {
     private static final String driver = "net.sourceforge.jtds.jdbc.Driver";
-    private static String connection;
 
     /**
      * tries to connect to database and prints info about whether it succeeded
+     *
      * @param activity the activity from which to connect
      * @return connection connected to the database
      */
     public static Connection openConnection(Activity activity) {
-        Connection con=null;
+        Connection con = null;
         requestPermissions(activity, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 1);
-        connection = PreferencesHelp.getUrl();
 
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         String connection = PreferencesHelp.getUrl();
         try {
-            System.out.println("attempted to connect to:"+connection);
+            System.out.println("attempted to connect to:" + connection);
             Class.forName(driver).newInstance();
             con = DriverManager.getConnection(connection);
             System.out.println("Successfully connected to database.");
@@ -53,6 +52,7 @@ public class ConnectionHelp {
 
     /**
      * tries to close the connection con and prints info about whether it succeeded
+     *
      * @param con the connection to close
      */
     public static void closeConnection(Connection con) {
@@ -70,6 +70,7 @@ public class ConnectionHelp {
 
     /**
      * tries to executes SQL statement to update database
+     *
      * @param con   the connection to the database
      * @param query the SQL query to execute
      */
@@ -90,6 +91,7 @@ public class ConnectionHelp {
 
     /**
      * tries to execute SQL statement to get information from database
+     *
      * @param con   the connection to the database
      * @param query the SQL query to execute
      * @return the result set gained from executing the query if successfull, otherwise null

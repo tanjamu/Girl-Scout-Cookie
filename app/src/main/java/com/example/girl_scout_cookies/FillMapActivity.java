@@ -1,6 +1,6 @@
 package com.example.girl_scout_cookies;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -51,6 +51,7 @@ public class FillMapActivity extends AppCompatActivity {
     /**
      * Initializes the map and the CircleClickListener
      * Gets called when the map is ready
+     *
      * @param mMap the map to pass to the FillMapActivity
      */
     public void initializeMap(GoogleMap mMap) {
@@ -99,6 +100,7 @@ public class FillMapActivity extends AppCompatActivity {
     /**
      * Handles what happens when a circle on the map is clicked.
      * Selects the circle parameter and allows to delete it
+     *
      * @param circle - the circle to be deleted
      */
     public void onCircleClick(Circle circle) {
@@ -143,6 +145,7 @@ public class FillMapActivity extends AppCompatActivity {
     /**
      * Handles the click for the buttons Cancel and Save.
      * Updates button texts
+     *
      * @param view the current view
      */
     private void CancelSave(View view) {
@@ -159,6 +162,7 @@ public class FillMapActivity extends AppCompatActivity {
     /**
      * Handles the click for the buttons Enter, Submit and Delete.
      * Updates button texts
+     *
      * @param view the current view
      */
     private void EnterSubmitDelete(View view) {

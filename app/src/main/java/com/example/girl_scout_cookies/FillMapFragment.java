@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +22,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class FillMapFragment extends Fragment {
     private GoogleMap mMap;
 
-    private OnMapReadyCallback callback = new OnMapReadyCallback() {
+    private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         @Override
         public void onMapReady(@NonNull GoogleMap googleMap) {
             mMap = googleMap;
 
-            ((FillMapActivity) getActivity()).initializeMap(mMap);
+            ((FillMapActivity) requireActivity()).initializeMap(mMap);
 
             LatLng netherlands = new LatLng(52.1, 5.4);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(netherlands));
@@ -60,10 +59,6 @@ public class FillMapFragment extends Fragment {
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(14.5f));
         return marker;
-    }
-
-    public GoogleMap getmMap() {
-        return mMap;
     }
 
     public Circle addCircle(LatLng latLng, int color) {

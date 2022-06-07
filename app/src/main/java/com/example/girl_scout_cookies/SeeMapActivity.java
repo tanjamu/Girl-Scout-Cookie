@@ -27,7 +27,7 @@ public class SeeMapActivity extends AppCompatActivity {
         Connection connect = ConnectionHelp.openConnection(this);
 
         if (SQLHelp.mapExists(mapName, connect)) {
-            int mapID = SQLHelp.getMapID(mapName,connect);
+            int mapID = SQLHelp.getMapID(mapName, connect);
             ConnectionHelp.closeConnection(connect);
 
             Intent intent = new Intent(this, FillMapActivity.class);

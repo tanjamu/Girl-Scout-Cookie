@@ -1,25 +1,31 @@
 package com.example.girl_scout_cookies;
 
-import static android.graphics.Color.parseColor;
-import static android.graphics.Color.rgb;
 
 import android.graphics.Color;
-import android.graphics.ColorSpace;
+
 
 public final class MyColor {
 
-    final static int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW,Color.MAGENTA, Color.CYAN, Color.WHITE};
+    final static int[] colors = new int[]{Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.MAGENTA, Color.CYAN, Color.WHITE};
 
     public static String colorToString(int color) {
         switch (color) {
-            case Color.RED: return "Red";
-            case Color.BLUE: return "Blue";
-            case Color.GREEN: return "Green";
-            case Color.YELLOW: return "Yellow";
-            case Color.MAGENTA: return "Magenta";
-            case Color.CYAN: return "Cyan";
-            case Color.WHITE: return "White";
-            default: return "Unknown";
+            case Color.RED:
+                return "Red";
+            case Color.BLUE:
+                return "Blue";
+            case Color.GREEN:
+                return "Green";
+            case Color.YELLOW:
+                return "Yellow";
+            case Color.MAGENTA:
+                return "Magenta";
+            case Color.CYAN:
+                return "Cyan";
+            case Color.WHITE:
+                return "White";
+            default:
+                return "Unknown";
         }
     }
 

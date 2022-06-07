@@ -26,6 +26,7 @@ public class FillMapBackend {
     final Geocoder geocoder; // For transforming address queries into Addresses
 
     int[] colors = MyColor.getColors();
+
     public FillMapBackend(FillMapActivity fillMapActivity, int mapID) {
         this.fillMapActivity = fillMapActivity;
         this.mapID = mapID;
@@ -55,6 +56,7 @@ public class FillMapBackend {
     /**
      * Handles what happens when a circle is clicked.
      * Sets the toDeleteCircle too the parameter and adds a marker to it.
+     *
      * @param circle the circle that is flagged to be deleted
      */
     public void onCircleClick(Circle circle) {
@@ -67,6 +69,7 @@ public class FillMapBackend {
      * Pressing the Enter button.
      * Looks up the searchString in a Geocoder and adds a marker
      * at the found address if one is found.
+     *
      * @param searchString the string to try to match to an address
      * @return returns whether there was an address found
      */
