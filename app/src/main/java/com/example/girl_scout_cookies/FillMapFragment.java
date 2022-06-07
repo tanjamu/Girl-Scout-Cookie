@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -25,8 +26,11 @@ public class FillMapFragment extends Fragment {
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         @Override
-        public void onMapReady(GoogleMap googleMap) {
+        public void onMapReady(@NonNull GoogleMap googleMap) {
             mMap = googleMap;
+
+            ((FillMapActivity) getActivity()).initializeMap(mMap);
+
             LatLng netherlands = new LatLng(52.1, 5.4);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(netherlands));
             mMap.moveCamera(CameraUpdateFactory.zoomTo(7f));
@@ -58,12 +62,17 @@ public class FillMapFragment extends Fragment {
         return marker;
     }
 
-    public void addCircle(LatLng latLng, int color) {
-        mMap.addCircle(new CircleOptions()
+    public GoogleMap getmMap() {
+        return mMap;
+    }
+
+    public Circle addCircle(LatLng latLng, int color) {
+        return mMap.addCircle(new CircleOptions()
                 .center(latLng)
                 .radius(5)
                 .strokeColor(color)
                 .fillColor(color)
+                .clickable(true)
         );
     }
 }

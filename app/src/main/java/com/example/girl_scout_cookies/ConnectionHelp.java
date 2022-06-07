@@ -26,12 +26,11 @@ public class ConnectionHelp {
 
     /**
      * tries to connect to database and prints info about whether it succeeded
-     *
-     * @param con      the connection to connect to the database
      * @param activity the activity from which to connect
-     * @return connection con after connecting
+     * @return connection connected to the database
      */
-    public static Connection connect(Connection con, Activity activity) {
+    public static Connection openConnection(Activity activity) {
+        Connection con=null;
         requestPermissions(activity, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 1);
         connection = PreferencesHelp.getUrl();
 
@@ -54,7 +53,6 @@ public class ConnectionHelp {
 
     /**
      * tries to close the connection con and prints info about whether it succeeded
-     *
      * @param con the connection to close
      */
     public static void closeConnection(Connection con) {
@@ -72,7 +70,6 @@ public class ConnectionHelp {
 
     /**
      * tries to executes SQL statement to update database
-     *
      * @param con   the connection to the database
      * @param query the SQL query to execute
      */
@@ -93,7 +90,6 @@ public class ConnectionHelp {
 
     /**
      * tries to execute SQL statement to get information from database
-     *
      * @param con   the connection to the database
      * @param query the SQL query to execute
      * @return the result set gained from executing the query if successfull, otherwise null

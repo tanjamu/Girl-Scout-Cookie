@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.sql.Connection;
 
@@ -45,11 +44,20 @@ public class Settings extends AppCompatActivity {
     }
 
     public void createTables(View view) {
-        connect = ConnectionHelp.connect(connect, this);
+        connect = ConnectionHelp.openConnection(this);
+        GetMap.dropTable("Main", connect);
+        GetMap.dropTable("Address", connect);
+        GetMap.dropTable("Color", connect);
+        GetMap.dropTable("Map", connect);
         GetMap.createTable("Main(addressID INT, mapID INT, colorID INT)", connect);
-        GetMap.createTable("Address(addressID INT, latitude FLOAT(53), longitude FLOAT(53))", connect);
-        GetMap.createTable("Color(colorID INT, color BIGINT)", connect);
-        GetMap.createTable("Map(mapID INT, mapCode VARCHAR(255))", connect);
+        GetMap.createTable("Address(addressID INT IDENTITY(1,1) PRIMARY KEY, latitude FLOAT(53), longitude FLOAT(53))", connect);
+        GetMap.createTable("Color(colorID INT IDENTITY(1,1) PRIMARY KEY, color BIGINT)", connect);
+        GetMap.createTable("Map(mapID INT IDENTITY(1,1) PRIMARY KEY, Name VARCHAR(255))", connect);
+
+        for (int color : MyColor.getColors()) {
+            GetMap.addColor(color, connect);
+        }
+
         ConnectionHelp.closeConnection(connect);
     }
 }
