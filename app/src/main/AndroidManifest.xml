@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GirlScoutCookies">
         <activity
-            android:name=".Settings"
+            android:name=".SettingsActivity"
             android:exported="false">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -35,7 +35,7 @@
             android:exported="false"
             android:label="@string/title_activity_test_maps" />
         <activity
-            android:name=".CreateMap"
+            android:name=".CreateMapActivity"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -44,7 +44,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".SeeMap"
+            android:name=".SeeMapActivity"
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->

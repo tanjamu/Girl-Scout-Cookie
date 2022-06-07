@@ -7,7 +7,7 @@ import java.sql.SQLException;
 /**
  * Contains functions with prepared statements for SQL and functions that check for existence
  */
-public class GetMap {
+public class SQLHelp {
     /**
      * Checks whether a map with a certain name exists in the database
      *

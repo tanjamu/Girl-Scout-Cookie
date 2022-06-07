@@ -1,6 +1,5 @@
 package com.example.girl_scout_cookies;
 
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 
@@ -36,7 +35,7 @@ public class FillMapBackend {
 
     public void loadMap() {
         Connection connection = ConnectionHelp.openConnection(fillMapActivity);
-        ResultSet resultSet = GetMap.getAddresses(mapID, connection);
+        ResultSet resultSet = SQLHelp.getAddresses(mapID, connection);
         try {
             while (resultSet.next()) {
                 double latitude, longitude;
@@ -132,19 +131,19 @@ public class FillMapBackend {
         Connection connection = ConnectionHelp.openConnection(fillMapActivity);
 
         for (Circle c : newAddresses) {
-            final int colorID = GetMap.getColorID(c.getFillColor(), connection);
-            final int addressID = GetMap.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
+            final int colorID = SQLHelp.getColorID(c.getFillColor(), connection);
+            final int addressID = SQLHelp.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
 
             // Insert entry into database
-            GetMap.updateAddressSafe(addressID, colorID, mapID, connection);
+            SQLHelp.updateAddressSafe(addressID, colorID, mapID, connection);
         }
 
         for (Circle c : removedAddresses) {
-            final int colorID = GetMap.getColorID(c.getFillColor(), connection);
-            final int addressID = GetMap.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
+            final int colorID = SQLHelp.getColorID(c.getFillColor(), connection);
+            final int addressID = SQLHelp.getAddressIDSafe(c.getCenter().latitude, c.getCenter().longitude, connection);
 
             // Remove entry from database
-            GetMap.removeAddress(addressID, colorID, mapID, connection);
+            SQLHelp.removeAddress(addressID, colorID, mapID, connection);
         }
 
         ConnectionHelp.closeConnection(connection);

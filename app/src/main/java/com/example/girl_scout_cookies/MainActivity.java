@@ -18,18 +18,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void seeMap(View view) {
-        Intent intent = new Intent(this, SeeMap.class);
+        Intent intent = new Intent(this, SeeMapActivity.class);
         startActivity(intent);
 
     }
 
     public void createMap(View view) {
-        Intent intent = new Intent(this, CreateMap.class);
+        Intent intent = new Intent(this, CreateMapActivity.class);
         startActivity(intent);
     }
 
     public void settings(View view) {
-        Intent intent = new Intent(this, Settings.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
