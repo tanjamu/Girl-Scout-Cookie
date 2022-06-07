@@ -76,7 +76,7 @@ public class GetMap {
         ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT mapID FROM Map WHERE Name = '" + mapName + "';");
         int mapID = -1;
         try {
-            mapID = set.getInt(0);
+            mapID = set.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,7 +93,7 @@ public class GetMap {
         ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT colorID FROM Color WHERE value = " + color + ";");
         int colorID = -1;
         try {
-            colorID = set.getInt(0);
+            colorID = set.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -148,7 +148,7 @@ public class GetMap {
         ResultSet r = ConnectionHelp.readFromDatabase(conn, "SELECT id FROM Address WHERE latitude = " + latitude + "AND longitude = " + longitude + ";");
         int res = -1;
         try {
-            res = r.getInt(0);
+            res = r.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
