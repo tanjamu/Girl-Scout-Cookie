@@ -30,9 +30,9 @@ public class CreateMap extends AppCompatActivity {
             t.setText(R.string.error_existing_code);
             ConnectionHelp.closeConnection(connect);
         } else {
+            GetMap.createMap(mapName,connect);
+            int mapID = GetMap.getMapID(mapName,connect);
             ConnectionHelp.closeConnection(connect);
-            int mapID = 0;
-
             Intent intent = new Intent(this, ToMap.class);
 
             //send the map info along the intent to ToMap in extra message
