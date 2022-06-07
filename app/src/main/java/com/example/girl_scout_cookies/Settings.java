@@ -51,7 +51,7 @@ public class Settings extends AppCompatActivity {
         GetMap.createTable("Map(mapID INT IDENTITY(1,1) PRIMARY KEY, Name VARCHAR(255))", connect);
 
         for (int color : MyColor.getColors()) {
-            // Add the color to the database
+            GetMap.addColor(color, connect);
         }
 
         ConnectionHelp.closeConnection(connect);

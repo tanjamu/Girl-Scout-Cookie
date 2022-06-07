@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class GetMap {
     /**
      * Checks whether a map with a certain name exists in the database
+     *
      * @param mapName name of the map to be checked
      * @param conn    connection to the database
      * @return whether a map with name mapName exists in the database
@@ -25,6 +26,7 @@ public class GetMap {
 
     /**
      * Checks whether an address with addressID exists in the map with mapID
+     *
      * @param addressID ID of address to be checked
      * @param mapID     ID of map to check address in
      * @param conn      connection to the database
@@ -41,7 +43,8 @@ public class GetMap {
 
     /**
      * Checks whether an address with certain latitude and longitude exists in table Address
-     * @param latitude latitude of address
+     *
+     * @param latitude  latitude of address
      * @param longitude longitude of address
      * @param conn      connection to the database
      * @return whether address exists in Address
@@ -57,6 +60,7 @@ public class GetMap {
 
     /**
      * gets the addresses from the database of the map with a certain mapID
+     *
      * @param mapID ID of the map to get addresses from
      * @param conn  connection to the database
      * @return ResultSet of addresses from map with mapID
@@ -67,6 +71,7 @@ public class GetMap {
 
     /**
      * gets the mapID of the map with a certain name
+     *
      * @param mapName name of the map
      * @param conn    connection to the database
      * @return mapID belonging to the map with name mapName
@@ -84,6 +89,7 @@ public class GetMap {
 
     /**
      * gets the colorID of the color with a certain value
+     *
      * @param color the value of the color
      * @param conn  connection to the database
      * @return colorID of color
@@ -101,6 +107,7 @@ public class GetMap {
 
     /**
      * updates color of an address on a certain map safely, if the address doesn't exist it creates the address
+     *
      * @param addressID ID of the address to update
      * @param colorID   ID of the color to set the color to
      * @param mapID     ID of the map of the address
@@ -109,13 +116,14 @@ public class GetMap {
     public static void updateAddressSafe(int addressID, int colorID, int mapID, Connection conn) {
         if (addressExists(addressID, mapID, conn)) {
             ConnectionHelp.updateDatabase(conn, "UPDATE Main SET colorID = " + colorID + "WHERE addressID = " + addressID + "AND mapID = " + mapID + ";");
-        }else{
+        } else {
             createAddress(addressID, colorID, mapID, conn);
         }
     }
 
     /**
      * adds an address to table Main with a certain mapID and colorID
+     *
      * @param addressID ID of address to add
      * @param colorID   ID of color to assign to address
      * @param mapID     ID of map of the address
@@ -127,7 +135,8 @@ public class GetMap {
 
     /**
      * creates an address in the table Address with a certain latitude and longitude
-     * @param latitude latitude of address
+     *
+     * @param latitude  latitude of address
      * @param longitude longitude of address
      * @param conn      connection to the database
      */
@@ -191,13 +200,25 @@ public class GetMap {
         String query = "CREATE TABLE " + tableName + ";";
         ConnectionHelp.updateDatabase(conn, query);
     }
+
     /**
-     *Makes a Map in the database
-     * @param mapName name of the map in the database
-     * @param connection connection to the database
+     * adds a color to the table Color of the database
+     *
+     * @param color int indicating the color
+     * @param conn  connection to the database
      */
-    public static void createMap(String mapName, Connection connection) {
-        ConnectionHelp.updateDatabase(connection, "INSERT INTO Map(Name) Values('" + mapName + "');");
+    public static void addColor(int color, Connection conn) {
+        ConnectionHelp.updateDatabase(conn, "INSERT INTO Color(color) Values(" + color + ");");
+    }
+
+    /**
+     * Makes a Map in the database
+     *
+     * @param mapName name of the map in the database
+     * @param conn    connection to the database
+     */
+    public static void createMap(String mapName, Connection conn) {
+        ConnectionHelp.updateDatabase(conn, "INSERT INTO Map(Name) Values('" + mapName + "');");
     }
 }
 
