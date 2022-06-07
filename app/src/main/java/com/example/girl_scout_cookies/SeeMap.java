@@ -11,7 +11,8 @@ import android.widget.TextView;
 import java.sql.Connection;
 
 public class SeeMap extends AppCompatActivity {
-//    public static final String EXTRA_MESSAGE = "Girl-Scout-Cookies.MESSAGE";
+    public static final String MAP_NAME = "Girl-Scout-Cookies.MAP_NAME";
+    public static final String MAP_ID = "Girl-Scout-Cookies.MAP_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,19 +21,24 @@ public class SeeMap extends AppCompatActivity {
     }
 
     public void toMap(View view) {
-        Intent intent = new Intent(this, ToMap.class);
         // Get the content of text field of editTextMapCode
         EditText editText = (EditText) findViewById(R.id.editTextMapCode);
         String mapName = editText.getText().toString();
-        Connection c = ConnectionHelp.openConnection(this);
-        if (GetMap.mapExists(mapName, c)) {
+        Connection connect = ConnectionHelp.openConnection(this);
+
+        if (GetMap.mapExists(mapName, connect)) {
+            int mapID = GetMap.getMapID(mapName,connect);
+            ConnectionHelp.closeConnection(connect);
+
+            Intent intent = new Intent(this, FillMapActivity.class);
             // Send the content of message along the intent to ToMap in extra message
-            intent.putExtra(ToMap.MAP_NAME, mapName);
+            intent.putExtra(MAP_NAME, mapName);
+            intent.putExtra(MAP_ID, mapID);
             startActivity(intent);
         } else {
+            ConnectionHelp.closeConnection(connect);
             TextView t = findViewById(R.id.textView5);
             t.setText(R.string.not_existing_map);
         }
-        ConnectionHelp.closeConnection(c);
     }
 }

@@ -95,7 +95,7 @@ public class GetMap {
      * @return colorID of color
      */
     public static int getColorID(int color, Connection conn) {
-        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT colorID FROM Color WHERE value = " + color + ";");
+        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT colorID FROM Color WHERE color = " + color + ";");
         int colorID = -1;
         try {
             colorID = set.getInt(1);
