@@ -46,12 +46,20 @@ public class FillMapActivity extends AppCompatActivity {
     }
 
     /**
-     * Gets all variables from the activity and matches them to the local variables
+     * Initializes the map and the CircleClickListener
+     * Gets called when the map is ready
+     * @param mMap the map to pass to the FillMapActivity
      */
-    public void initializeMap(GoogleMap mMap) { ;
-        mMap.setOnCircleClickListener(this::onCircleClick);
+    public void initializeMap(GoogleMap mMap) {
+        this.mMap = mMap;
+        this.mMap.setOnCircleClickListener(this::onCircleClick);
+
+        fillMapBackend.loadMap();
     }
 
+    /**
+     * Gets all variables from the activity and matches them to the local variables
+     */
     private void initializeVariables() {
         setContentView(R.layout.activity_fill_map);
 

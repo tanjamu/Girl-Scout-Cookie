@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -31,6 +32,27 @@ public class FillMapBackend {
         this.mapID = mapID;
 
         geocoder = new Geocoder(fillMapActivity.getApplicationContext());
+    }
+
+    public void loadMap() {
+        Connection connection = ConnectionHelp.openConnection(fillMapActivity);
+        ResultSet resultSet = GetMap.getAddresses(mapID, connection);
+        try {
+            resultSet.beforeFirst();
+            while (resultSet.next()) {
+                double latitude, longitude;
+                int color;
+                latitude = resultSet.getDouble(1);
+                longitude = resultSet.getDouble(2);
+                color = resultSet.getInt(3);
+                LatLng latLng = new LatLng(latitude, longitude);
+                Circle circle = fillMapActivity.addCircle(latLng, color);
+                addresses.add(circle);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

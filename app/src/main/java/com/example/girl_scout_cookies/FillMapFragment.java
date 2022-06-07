@@ -72,6 +72,7 @@ public class FillMapFragment extends Fragment {
                 .radius(5)
                 .strokeColor(color)
                 .fillColor(color)
+                .clickable(true)
         );
     }
 }

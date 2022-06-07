@@ -66,7 +66,7 @@ public class GetMap {
      * @return ResultSet of addresses from map with mapID
      */
     public static ResultSet getAddresses(int mapID, Connection conn) {
-        return ConnectionHelp.readFromDatabase(conn, "SELECT addressID, colorID FROM Main WHERE mapID = " + mapID + ";");
+        return ConnectionHelp.readFromDatabase(conn, "SELECT latitude, longitude, color FROM Main, Address, Color WHERE mapID = " + mapID + " AND Address.addressID = Main.addressID AND Color.colorID = Main.colorID;");
     }
 
     /**
