@@ -77,9 +77,10 @@ public class GetMap {
      * @return mapID belonging to the map with name mapName
      */
     public static int getMapID(String mapName, Connection conn) {
-        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT mapID FROM Map WHERE Name = '" + mapName + "';");
+        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Map WHERE Name = '" + mapName + "';");
         int mapID = -1;
         try {
+            set.next(); //to get the first element of ResultSet set
             mapID = set.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -98,6 +99,7 @@ public class GetMap {
         ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT colorID FROM Color WHERE color = " + color + ";");
         int colorID = -1;
         try {
+            set.next(); //to get the first element of ResultSet set
             colorID = set.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -153,10 +155,11 @@ public class GetMap {
      * @return addressID of address
      */
     private static Integer getAddressID(double latitude, double longitude, Connection conn) {
-        ResultSet r = ConnectionHelp.readFromDatabase(conn, "SELECT addressID FROM Address WHERE latitude = " + latitude + "AND longitude = " + longitude + ";");
+        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT addressID FROM Address WHERE latitude = " + latitude + "AND longitude = " + longitude + ";");
         int res = -1;
         try {
-            res = r.getInt(1);
+            set.next(); //to get the first element of ResultSet set
+            res = set.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
