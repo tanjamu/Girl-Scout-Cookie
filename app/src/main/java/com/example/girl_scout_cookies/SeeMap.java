@@ -24,11 +24,12 @@ public class SeeMap extends AppCompatActivity {
         // Get the content of text field of editTextMapCode
         EditText editText = (EditText) findViewById(R.id.editTextMapCode);
         String mapName = editText.getText().toString();
-        Connection c=ConnectionHelp.openConnection(this);
-        if(GetMap.mapExists(mapName, c)){
-        // Send the content of message along the intent to ToMap in extra message
-        intent.putExtra(ToMap.MAP_NAME, mapName);
-        startActivity(intent);}else{
+        Connection c = ConnectionHelp.openConnection(this);
+        if (GetMap.mapExists(mapName, c)) {
+            // Send the content of message along the intent to ToMap in extra message
+            intent.putExtra(ToMap.MAP_NAME, mapName);
+            startActivity(intent);
+        } else {
             TextView t = findViewById(R.id.textView5);
             t.setText(R.string.not_existing_map);
         }

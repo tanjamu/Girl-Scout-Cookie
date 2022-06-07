@@ -152,12 +152,6 @@ public class FillMapActivity extends AppCompatActivity {
      */
     private void EnterSubmitDelete(View view) {
         if (btnEnterSubmitDelete.getText().equals(getString(R.string.enter))) {
-            swapToSubmitAddress();
-        } else {
-            swapToEnterAddress();
-        }
-
-        if (btnEnterSubmitDelete.getText().equals(getString(R.string.enter))) {
             String searchString = addressTextView.getText().toString();
             if (!fillMapBackend.Enter(searchString))
                 swapToEnterAddress(); // Search not succeeded
@@ -165,6 +159,12 @@ public class FillMapActivity extends AppCompatActivity {
             fillMapBackend.Submit();
         } else {
             fillMapBackend.Delete();
+        }
+
+        if (btnEnterSubmitDelete.getText().equals(getString(R.string.enter))) {
+            swapToSubmitAddress();
+        } else {
+            swapToEnterAddress();
         }
     }
 

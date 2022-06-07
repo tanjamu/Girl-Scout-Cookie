@@ -15,13 +15,12 @@ public class GetMap {
      * @return whether a map with name mapName exists in the database
      */
     public static boolean mapExists(String mapName, Connection conn) {
-        if (ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Map WHERE Name = '" + mapName + "';") != null) {
-            ConnectionHelp.closeConnection(conn);
-            return true;
-        } else {
-            ConnectionHelp.closeConnection(conn);
-            return false;
+        try {
+            return ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Map WHERE Name = '" + mapName + "';").next();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
     /**
@@ -198,7 +197,7 @@ public class GetMap {
      * @param connection connection to the database
      */
     public static void createMap(String mapName, Connection connection) {
-        ConnectionHelp.updateDatabase(connection, "INSERT INTO Map(mapName) Values(" + mapName + ");");
+        ConnectionHelp.updateDatabase(connection, "INSERT INTO Map(Name) Values('" + mapName + "');");
     }
 }
 
