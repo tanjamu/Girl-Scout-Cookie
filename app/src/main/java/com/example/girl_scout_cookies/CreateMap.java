@@ -24,7 +24,7 @@ public class CreateMap extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.editTextNewCode);
         String mapName = editText.getText().toString();
 
-        connect = ConnectionHelp.connect(connect, this);
+        connect = ConnectionHelp.openConnection(this);
         if (GetMap.mapExists(mapName, connect)) {
             TextView t = findViewById(R.id.textView2);
             t.setText(R.string.error_existing_code);
