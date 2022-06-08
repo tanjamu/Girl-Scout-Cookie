@@ -63,7 +63,7 @@
 
     <Button
         android:id="@+id/buttonUpdate"
-        android:layout_width="93dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="updateSettings"
         android:text="@string/update"
@@ -75,7 +75,7 @@
 
     <TextView
         android:id="@+id/textViewIP"
-        android:layout_width="211dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:text="@string/ip"
         app:layout_constraintBottom_toTopOf="@+id/editTextIP"
@@ -86,7 +86,7 @@
 
     <TextView
         android:id="@+id/textViewDB"
-        android:layout_width="211dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:text="@string/database"
         app:layout_constraintBottom_toTopOf="@+id/editTextDB"
@@ -97,7 +97,7 @@
 
     <TextView
         android:id="@+id/textViewUser"
-        android:layout_width="211dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:text="@string/user"
         app:layout_constraintBottom_toTopOf="@+id/editTextUser"
@@ -108,7 +108,7 @@
 
     <TextView
         android:id="@+id/textViewPass"
-        android:layout_width="211dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:text="@string/pass"
         app:layout_constraintBottom_toTopOf="@+id/editTextPass"
@@ -121,7 +121,6 @@
         android:id="@+id/buttonCreateTables"
         android:layout_width="273dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:onClick="createTables"
         android:text="@string/create_db_tables"
         app:layout_constraintBottom_toBottomOf="parent"
