@@ -53,7 +53,7 @@ public class SettingsActivity extends AppCompatActivity {
         SQLHelp.createTable("Main(addressID INT, mapID INT, colorID INT)", connect);
         SQLHelp.createTable("Address(addressID INT IDENTITY(1,1) PRIMARY KEY, latitude FLOAT(53), longitude FLOAT(53))", connect);
         SQLHelp.createTable("Color(colorID INT IDENTITY(1,1) PRIMARY KEY, color BIGINT)", connect);
-        SQLHelp.createTable("Map(mapID INT IDENTITY(1,1) PRIMARY KEY, Name VARCHAR(255))", connect);
+        SQLHelp.createTable("Map(mapID INT IDENTITY(1,1) PRIMARY KEY, name VARCHAR(255))", connect);
 
         for (int color : MyColor.getColors()) {
             SQLHelp.addColor(color, connect);

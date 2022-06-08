@@ -17,7 +17,7 @@ public class SQLHelp {
      */
     public static boolean mapExists(String mapName, Connection conn) {
         try {
-            return ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Map WHERE Name = '" + mapName + "';").next();
+            return ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Map WHERE name = '" + mapName + "';").next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class SQLHelp {
      * @return mapID belonging to the map with name mapName
      */
     public static int getMapID(String mapName, Connection conn) {
-        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Map WHERE Name = '" + mapName + "';");
+        ResultSet set = ConnectionHelp.readFromDatabase(conn, "SELECT * FROM Map WHERE name = '" + mapName + "';");
         int mapID = -1;
         try {
             set.next(); //to get the first element of ResultSet set
@@ -232,7 +232,7 @@ public class SQLHelp {
      * @param conn    connection to the database
      */
     public static void createMap(String mapName, Connection conn) {
-        ConnectionHelp.updateDatabase(conn, "INSERT INTO Map(Name) Values('" + mapName + "');");
+        ConnectionHelp.updateDatabase(conn, "INSERT INTO Map(name) Values('" + mapName + "');");
     }
 }
 
