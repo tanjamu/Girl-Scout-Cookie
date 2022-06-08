@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name=".FillMapActivity"
-            android:exported="false" >
+            android:exported="false" />
         <!-- The meta-data tag is required if you support API level 15 and lower -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -33,7 +33,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
-        </activity>
+
 
         <activity
             android:name=".CreateMapActivity"
