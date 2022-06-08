@@ -85,6 +85,7 @@ public class FillMapActivity extends AppCompatActivity {
     }
 
     @Override
+    //called upon creation of the activity (when the screen starts to show the activity)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

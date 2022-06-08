@@ -16,11 +16,12 @@ public class CreateMapActivity extends AppCompatActivity {
     public static final String MAP_ID = "Girl-Scout-Cookies.MAP_ID";
 
     @Override
+    //called upon creation of the activity (when the screen starts to show the activity)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_map);
     }
-
+    //open the FillMapActivity and show the map if the map code does not already exists if it exists then shows a message
     public void toMap(View view) {
         //get the content of text field of editTextMapCode
         EditText editText = (EditText) findViewById(R.id.editTextNewCode);

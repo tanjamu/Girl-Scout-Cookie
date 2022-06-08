@@ -13,6 +13,7 @@ public class SettingsActivity extends AppCompatActivity {
     Connection connect = null;
 
     @Override
+    //called upon creation of the activity(when the screen starts to show the activity)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -27,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
         db.setText(MainActivity.preferences.getString("database", "def_database"));
         ip.setText(MainActivity.preferences.getString("ip", "def_ip"));
     }
-
+    //stores the settings as they are currently entered in the fields in the preferences
     public void updateSettings(View view) {
         EditText editTextIp = (EditText) findViewById(R.id.editTextIP);
         String ip = editTextIp.getText().toString();
@@ -42,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
+    //creates tables in the database corresponding to the data in the preferences.
     public void createTables(View view) {
         connect = ConnectionHelp.openConnection(this);
         SQLHelp.dropTable("Main", connect);

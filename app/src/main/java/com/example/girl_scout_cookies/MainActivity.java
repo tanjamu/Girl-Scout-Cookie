@@ -11,23 +11,24 @@ public class MainActivity extends AppCompatActivity {
     public static SharedPreferences preferences;
 
     @Override
+    //called upon creation of the activity (when the screen starts to show the activity)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         preferences = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
     }
-
+    //opens the SeeMapActivity
     public void seeMap(View view) {
         Intent intent = new Intent(this, SeeMapActivity.class);
         startActivity(intent);
 
     }
-
+    //opens the CreateMapActivity
     public void createMap(View view) {
         Intent intent = new Intent(this, CreateMapActivity.class);
         startActivity(intent);
     }
-
+    //opens the SettingsActivity
     public void settings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);

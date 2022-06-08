@@ -15,11 +15,12 @@ public class SeeMapActivity extends AppCompatActivity {
     public static final String MAP_ID = "Girl-Scout-Cookies.MAP_ID";
 
     @Override
+    //called upon creation of the activity(when the screen starts to show the activity)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_map);
     }
-
+    //opens the FillMapActivity if the map code already exist otherwise sends a message
     public void toMap(View view) {
         // Get the content of text field of editTextMapCode
         EditText editText = (EditText) findViewById(R.id.editTextMapCode);

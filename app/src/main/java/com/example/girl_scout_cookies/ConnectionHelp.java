@@ -31,11 +31,12 @@ public class ConnectionHelp {
      */
     public static Connection openConnection(Activity activity) {
         Connection con = null;
+        //request permissions
         requestPermissions(activity, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 1);
-
         ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.INTERNET}, PackageManager.PERMISSION_GRANTED);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        //make connection
         String connection = PreferencesHelp.getUrl();
         try {
             System.out.println("attempted to connect to:" + connection);
