@@ -1,6 +1,6 @@
 1) download and install microsoft sql server mangement studio (https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-  ver16)
 2) download and install microsoft sql server express (https://www.microsoft.com/nl-nl/sql-server/sql-server-downloads)
-3) open microsoft sql server mangement studio and press connect(assuming this is your first sql server the correct server should be default, other wise select the correct server)
+3) open microsoft sql server management studio and press connect(assuming this is your first sql server the correct server should be default, other wise select the correct server)
   1) enable Sql server autenication
     1) press right click on servername
     2) press left click on properties
@@ -29,13 +29,13 @@
     1) right click databases
     2) left click new database...
     3) enter a database name and press ok
-4) open sql server configuration maneger
+4) open sql server configuration manager
   1) enable tcp/ip under SQL Native Client / Client Protocols
   2) enable tcp/ip under SQL Server Network Configuratoin / Protocols for SQLEXPRESS
-  3) right click tcp/ip under protecols for sql express
+  3) right click tcp/ip under protocols for sql express
   4) left click properties
   5) set listen all to yes
-  6) enable all ip protcols
+  6) enable all ip protocols
   7) set the tcp port under listen all to 1433
 5) open windows advanced firewall settings
   1) left click inbound rules 
@@ -43,7 +43,7 @@
   3) select port
   4) enter in the port box 1433
   5) allow connection
-  6) select every thing
+  6) select everything
   7) enter a name(and optionaly a discription)
   8) repeat for outbound rules
 6) Save all and restart your device
