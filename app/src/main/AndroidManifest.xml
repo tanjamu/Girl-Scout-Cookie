@@ -26,10 +26,7 @@
             android:name=".FillMapActivity"
             android:exported="false">
             <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity">
-            </meta-data>
+            <!--code for google api-->
             <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="${MAPS_API_KEY}">
@@ -42,6 +39,7 @@
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <!--code for back button-->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -51,6 +49,7 @@
             android:parentActivityName=".MainActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <!--code for back button-->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
