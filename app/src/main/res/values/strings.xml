@@ -9,8 +9,9 @@
     <string name="enter">Enter</string>
     <string name="submit">Submit</string>
     <string name="delete">Delete</string>
-
+    <string name="help">Help</string>
     <string name="update">Update</string>
+
     <string name="settings">Settings</string>
     <string name="enter_map_code">Enter the code of your map</string>
     <string name="enter_new_code">Enter a new code for your map</string>
@@ -25,4 +26,6 @@
     <string name="pass">Password:</string>
     <string name="create_db_tables">Create tables for database</string>
     <string name="not_existing_map">There is no map with this code, please enter the code of an existing map.</string>
+
+    <string name="info"><b>Instructions on how to use this app:</b>\n\nFirst click on Settings, fill out the information for your database and press on \'Update\'.\nIf this is the first time you use this database, go back to the settings and click on \'Create tables for database\' to prepare the database for usage.\nThen click in the main menu on \'Create a new map\' to create a new map, or on \'See an existing map\' if you already created a map and want to see that map.\nThen type in a new code for creating a new map or an existing code for seeing an existing map. Then click on \'Enter\'.\nThat will bring you to the map.\nYou can navigate through the map by dragging it around. You can zoom in by double clicking. You can also zoom by double clicking and then holding the second click and then dragging back and forth to zoom in and out.\nTo mark a house on the map:\n1) Type in the address and click on \'Enter\'.\n2) Select the color to mark the house with and click on \'Save\'.\nRepeat this to mark all the houses that you want to mark on the map. When you are finished, click on \'Submit\' to store the changes in the database.\n\nIn case you couldn\'t find your answer on our help page or in the installation instructions, please send an e-mail to: eskil.dam@ru.nl</string>
 </resources>
