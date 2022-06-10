@@ -73,7 +73,7 @@ public class FillMapActivity extends AppCompatActivity {
         errorTextView = findViewById(R.id.error_text_view); // For displaying error messages to the user
         addressTextView = findViewById(R.id.address_input); // For entering addresses to add to the map
 
-        initializeSpinner();
+        initializeSpinner(); // Handles all spinner related initialisation
 
         fragment = (FillMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
 
@@ -169,8 +169,10 @@ public class FillMapActivity extends AppCompatActivity {
     private void EnterSubmitDelete(View view) {
         if (btnEnterSubmitDelete.getText().equals(getString(R.string.enter))) {
             String searchString = addressTextView.getText().toString();
-            if (!fillMapBackend.Enter(searchString))
+            if (!fillMapBackend.Enter(searchString)) {
                 swapToEnterAddress(); // Search not succeeded
+                return;
+            }
         } else if (btnEnterSubmitDelete.getText().equals(getString(R.string.submit))) {
             fillMapBackend.Submit();
         } else {
