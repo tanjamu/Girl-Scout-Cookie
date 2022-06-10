@@ -34,7 +34,12 @@ public class FillMapBackend {
         geocoder = new Geocoder(fillMapActivity.getApplicationContext());
     }
 
+    /**
+     * Gets called when the map is finished loading
+     * This method gets all addresses from the database and draws them on the map
+     */
     public void loadMap() {
+        // Get all addresses from the database
         Connection connection = ConnectionHelp.openConnection(fillMapActivity);
         ResultSet resultSet = SQLHelp.getAddresses(mapID, connection);
         try {
@@ -45,8 +50,8 @@ public class FillMapBackend {
                 longitude = resultSet.getDouble(2);
                 color = resultSet.getInt(3);
                 LatLng latLng = new LatLng(latitude, longitude);
-                Circle circle = fillMapActivity.addCircle(latLng, color);
-                addresses.add(circle);
+                Circle circle = fillMapActivity.addCircle(latLng, color); // Draws the circle on the map
+                addresses.add(circle); // Adds circle to the internal collection
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,10 +122,8 @@ public class FillMapBackend {
      * Updates internal circle sets.
      */
     public void Delete() {
-        if (toDeleteCircle == null)
-            return;
-
         toDeleteCircle.remove(); // Removes the circle
+        currentMarker.remove(); // Removes marker
         addresses.remove(toDeleteCircle);
         newAddresses.remove(toDeleteCircle);
         removedAddresses.add(toDeleteCircle);

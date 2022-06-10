@@ -92,11 +92,12 @@
 
     <TextView
         android:id="@+id/top_text_view"
-        android:layout_width="377dp"
+        android:layout_width="match_parent"
         android:layout_height="26dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/textview_back"
         android:foregroundTint="#000000"
+        android:layout_margin="8dp"
         android:includeFontPadding="true"
         android:padding="2dp"
         android:paddingStart="2dp"
